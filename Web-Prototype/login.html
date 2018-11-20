@@ -13,19 +13,6 @@
 </head>
 
 <body class="blue darken-3">
-    <nav>
-        <div class="nav-wrapper blue darken-4">
-            <a href="#!" class="brand-logo">Logo</a>
-            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-            <ul class="right hide-on-med-and-down">
-                <li><a href="index.html">Sass</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <ul class="sidenav" id="mobile-demo">
-        <li><a href="index.html">Login</a></li>
-    </ul>
     <div class="container">
         <div class="row">
             <form class="">
@@ -59,10 +46,6 @@
     <script type="text/javascript" src="assets/js/materialize.min.js"></script>
     <script type="text/javascript" src="assets/js/sweetalert2.all.min.js"></script>
     <script>
-        $(document).ready(function () {
-            $('.sidenav').sidenav();
-        });
-
         function login() {
             var url = "http://localhost:8080/usuarios/login/"
             var usuario = {

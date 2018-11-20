@@ -13,21 +13,6 @@
 </head>
 
 <body class="blue darken-3">
-
-    <ul class="sidenav" id="mobile-demo">
-        <li><a href="index.html">Sass</a></li>
-    </ul>
-    <div class="navbar-fixed">
-        <nav>
-            <div class="nav-wrapper blue darken-4">
-                <a href="#!" class="brand-logo">Logo</a>
-                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-                <ul class="right hide-on-med-and-down">
-                    <li><a href="index.html">Sass</a></li>
-                </ul>
-            </div>
-        </nav>
-    </div>
     <div class="container">
         <div class="row">
             <form class="">
@@ -43,7 +28,9 @@
                 </div>
                 <div class="row">
                     <ul class="collection with-header" id="collectionResumo">
-                        <li class="collection-header"><h4>Últimos Simulados</h4></li>
+                        <li class="collection-header">
+                            <h4>Últimos Simulados</h4>
+                        </li>
                     </ul>
                 </div>
                 <div class="row">
@@ -60,36 +47,61 @@
     <script type="text/javascript" src="assets/js/jquery-3.3.1.slim.min.js"></script>
     <script type="text/javascript" src="assets/js/materialize.min.js"></script>
     <script>
-        $(document).ready(function () {
-            $('.sidenav').sidenav();
-        });
+        carregarItensTeste();
+        var baseUrl = 'http://localhost:8080/simplemath';
+        function carregarItens() {
+            var url = baseUrl + "/quiz/resumo/" + usuario.id
+            $.ajax({
+                type: "GET",
+                url: url,
+                timeout: 3000,
+                datatype: 'JSON',
+                contentType: "application/json; charset=utf-8",
+                cache: false,
+                error: function () {
+                    swal({
+                        type: 'error',
+                        title: 'Oops...',
+                        text: 'Aconteceu um erro desconhecido durante sua requisição'
+                    });
+                },
+                success: function (retorno) {
+                    var listaResumo = retorno
+                    $.each(listaResumo, function (i, resumo) {
+                        var item = '<span class="title">' + resumo.data + '</span>';
+                        item += '<p>' + resumo.tempo + '<br>';
+                        item += '<span>' + resumo.acertos + '/<span>';
+                        item += '<span>' + resumos.erros + '</span>' + '</p>';
+                        var li = '<li class="collection-item">' + item + '</li>';
+                        $('#collectionResumo ul').append(li);
+                    });
+                }
+            });
+        }
 
-        var baseUrl = 'http://localhost:8080/simplemath'
-function carregarItens() {
-    var url = baseUrl + "/quiz/resumo/" + usuario.id
-    $.ajax({
-        type: "GET",
-        url: url,
-        timeout: 3000,
-        datatype: 'JSON',
-        contentType: "application/json; charset=utf-8",
-        cache: false,
-        error: function () {
-            //
-        },
-        success: function (retorno) {
-            var listaResumo = retorno
-            $.each(listaResumo, function (i, resumo){
+        function carregarItensTeste() {
+            var retorno = [];
+            for (i = 0; i < 5; i++) {
+                var dia = 3 + i;
+                var obj = {
+                    data: '0' + dia + '/11/2018 13:13',
+                    tempo: '01:2' + i,
+                    acertos: 9,
+                    erros: 6
+                }
+                retorno.push(obj);
+            }
+            var listaResultado = retorno;
+            $.each(listaResultado, function (i, resumo) {
                 var item = '<span class="title">' + resumo.data + '</span>';
                 item += '<p>' + resumo.tempo + '<br>';
                 item += '<span>' + resumo.acertos + '/<span>';
-                item += '<span>' + resumos.erros + '</span>' + '</p>';
+                item += '<span>' + resumo.erros + '</span>' + '</p>';
                 var li = '<li class="collection-item">' + item + '</li>';
-                $('#collectionResumo ul').append(li);
+                $('#collectionResumo').append(li);
+                console.log(li);
             });
         }
-    });
-}
     </script>
 </body>
 
