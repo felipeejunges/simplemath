@@ -50,10 +50,13 @@
                         <div class="row brown-text">
                             <strong>Tempo Esperado:</strong><span>0</span>
                         </div>
-                        <div class="row pink-text">
-                            <strong>Pontuação:</strong><span>0</span>
-                        </div>
                     </div>
+                </div>
+                <div class="row">
+                    <ul class="collection with-header" id="collectionResultado">
+                        <li class="collection-header"><h4>Resultado</h4></li>
+                        
+                    </ul>
                 </div>
                 <div class="row">
                     <button type="submit" class="btn white blue-text darken-4 col s12"><strong>Finalizar</strong></button>
@@ -72,6 +75,30 @@
         $(document).ready(function () {
             $('.sidenav').sidenav();
         });
+        var baseUrl = 'http://localhost:8080/simplemath'
+    function carregarItens() {
+    var url = baseUrl + "/quiz/resultado/" + id
+    $.ajax({
+        type: "GET",
+        url: url,
+        timeout: 3000,
+        datatype: 'JSON',
+        contentType: "application/json; charset=utf-8",
+        cache: false,
+        error: function () {
+            //
+        },
+        success: function (retorno) {
+            var listaResultado = retorno
+            $.each(listaResultado, function (i, resultado){
+                var item = '<span class="title">' + resultado.correto + '</span>';
+                item += '<p>' + resultado.tempo + '</p>';
+                var li = '<li class="collection-item">' + item + '</li>';
+                $('#collectionResultado ul').append(li);
+            });
+        }
+    });
+}
     </script>
 </body>
 

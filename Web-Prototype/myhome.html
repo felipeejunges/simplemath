@@ -36,19 +36,15 @@
                         <div class="row green-text">
                             <strong>Total de Quiz:</strong><span>0</span>
                         </div>
-                        <div class="row brown-text">
-                            <strong>Total de Pontos:</strong><span>0</span>
-                        </div>
                         <div class="row orange-text">
                             <strong>Média de tempo:</strong><span>0</span>
                         </div>
-                        <div class="row purple-text">
-                            <strong>Maior pontuação:</strong><span>0</span>
-                        </div>
-                        <div class="row red-text">
-                            <strong>Menor pontuação:</strong><span>0</span>
-                        </div>
                     </div>
+                </div>
+                <div class="row">
+                    <ul class="collection with-header" id="collectionResumo">
+                        <li class="collection-header"><h4>Últimos Simulados</h4></li>
+                    </ul>
                 </div>
                 <div class="row">
                     <button type="submit" class="btn white blue-text darken-4 col s12"><strong>Quero um desafio</strong></button>
@@ -67,6 +63,33 @@
         $(document).ready(function () {
             $('.sidenav').sidenav();
         });
+
+        var baseUrl = 'http://localhost:8080/simplemath'
+function carregarItens() {
+    var url = baseUrl + "/quiz/resumo/" + usuario.id
+    $.ajax({
+        type: "GET",
+        url: url,
+        timeout: 3000,
+        datatype: 'JSON',
+        contentType: "application/json; charset=utf-8",
+        cache: false,
+        error: function () {
+            //
+        },
+        success: function (retorno) {
+            var listaResumo = retorno
+            $.each(listaResumo, function (i, resumo){
+                var item = '<span class="title">' + resumo.data + '</span>';
+                item += '<p>' + resumo.tempo + '<br>';
+                item += '<span>' + resumo.acertos + '/<span>';
+                item += '<span>' + resumos.erros + '</span>' + '</p>';
+                var li = '<li class="collection-item">' + item + '</li>';
+                $('#collectionResumo ul').append(li);
+            });
+        }
+    });
+}
     </script>
 </body>
 

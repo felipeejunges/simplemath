@@ -10,6 +10,12 @@
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <style>
+        .alternative {
+            font-size: 5rem;
+        }
+    </style>
 </head>
 
 <body class="blue darken-3">
@@ -20,7 +26,7 @@
     <div class="navbar-fixed">
             <nav>
                     <div class="nav-wrapper blue darken-4">
-                        <a href="#!" class="brand-logo">Logo</a>
+                        <a href="#!" class="brand-logo">SimpleMath</a>
                         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                         <ul class="right hide-on-med-and-down">
                             <li><a href="index.html">Sass</a></li>
@@ -48,7 +54,7 @@
                     </div>
                 </div>
                 <div class="row white-text">
-                    <p style="height: 16rem;overflow: scroll; margin-bottom: -2rem; margin-top: -2rem;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer condimentum ipsum nec rhoncus vulputate. Morbi sodales, purus nec consectetur congue, diam dolor vulputate justo, a posuere turpis velit in enim. Nullam vulputate placerat consequat. Vivamus interdum sapien diam. Donec viverra augue sed ultrices rutrum. Donec semper tellus lobortis, laoreet odio eget, hendrerit ipsum. Aenean feugiat mollis aliquet. In quis tempor nisi, vel aliquet erat.
+                    <p style="height: 15rem;overflow: scroll; margin-bottom: -1rem; margin-top: -2rem;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer condimentum ipsum nec rhoncus vulputate. Morbi sodales, purus nec consectetur congue, diam dolor vulputate justo, a posuere turpis velit in enim. Nullam vulputate placerat consequat. Vivamus interdum sapien diam. Donec viverra augue sed ultrices rutrum. Donec semper tellus lobortis, laoreet odio eget, hendrerit ipsum. Aenean feugiat mollis aliquet. In quis tempor nisi, vel aliquet erat.
 
                         Phasellus facilisis, libero eget sollicitudin pellentesque, libero tortor ultrices libero, a tincidunt velit orci at leo. Ut interdum libero eu imperdiet fringilla. Aenean non ipsum ipsum. Aliquam erat volutpat. Mauris ac ipsum eget mauris iaculis cursus. Suspendisse sodales, nulla a aliquam aliquam, massa enim gravida enim, at placerat eros mauris sed diam. Cras ipsum leo, tincidunt et tempus quis, malesuada id libero. Nullam vel egestas leo.
                         
@@ -62,35 +68,35 @@
                 <div class="row">
                     <div class="col s6">
                         <div class="card">
-                            <div class="center-align red-text">
-                                <h1>A</h1>
+                            <div class="center-align red-text alternative">
+                                A
                             </div>
                         </div>
                     </div>
                     <div class="col s6">
                         <div class="card">
-                            <div class="center-align green-text">
-                                <h1>B</h1>
+                            <div class="center-align green-text alternative">
+                                B
                             </div>
                         </div>
                     </div>
                     <div class="col s6">
                         <div class="card">
-                            <div class="center-align orange-text">
-                                <h1>C</h1>
+                            <div class="center-align orange-text alternative">
+                                C
                             </div>
                         </div>
                     </div>
                     <div class="col s6">
                         <div class="card">
-                            <div class="center-align purple-text">
-                                <h1>D</h1>
+                            <div class="center-align purple-text alternative">
+                                D
                             </div>
                         </div>
                     </div>
                 </div>
                 
-                <div class="row" style=" margin-bottom: -1.5rem;">
+                <div class="row" style=" margin-bottom: -2rem;">
                     <button type="submit" class="btn white blue-text darken-4 col s12"><strong>Responder</strong></button>
                 </div>
 
@@ -107,6 +113,90 @@
         $(document).ready(function () {
             $('.sidenav').sidenav();
         });
+
+          var baseUrl = 'http://localhost:8080/simplemath'
+    var answers = [];
+    var quiz;
+// Novo Quiz
+
+
+function carregarItens() {
+    quiz = null;
+    var url = baseUrl + "/quiz/new/" + usuario.id
+    $.ajax({
+        type: "GET",
+        url: url,
+        timeout: 3000,
+        datatype: 'JSON',
+        contentType: "application/json; charset=utf-8",
+        cache: false,
+        error: function () {
+            //
+        },
+        success: function (retorno) {
+            quiz = retorno;
+        }
+    });
+}
+// Responder
+
+    function getQuestion(i) {
+        var question = quiz.questions[i];
+    $("#pergunta").val(question.question);
+    }
+    function answerQuestion(i) {
+        qntRespondidos = $("#respondidos").val();
+        var question = quiz.questions[i];
+        var alternative = question.alternatives[0];
+        var answer = {
+            question: question,
+            answer: alternative
+        }
+        answers.add(answer);
+        $("#respondidos").val(answers.length);
+
+        if(qntRespondidos == answers.size()) {
+            quiz.answers = answers;
+            salvarResposta();
+        } else {
+            getQuestion(qntRespondidos.val());
+        }
+    }
+
+    $('#a').click(function(){
+        answerQuestion(0);
+    });
+    $('#b').click(function(){
+        answerQuestion(1);
+    });
+    $('#c').click(function(){
+       answerQuestion(2);
+    });
+    $('#d').click(function(){
+       answerQuestion(3);
+    });
+    $('#e').click(function(){
+       answerQuestion(4);
+    });
+
+    function salvarResposta() {
+    var url = baseUrl + "/quiz/save/" + id
+    $.ajax({
+        type: "PUT",
+        url: url,
+        data: quiz,
+        timeout: 3000,
+        datatype: 'JSON',
+        contentType: "application/json; charset=utf-8",
+        cache: false,
+        error: function () {
+            //
+        },
+        success: function (retorno) {
+            
+        }
+    });
+}
     </script>
 </body>
 
