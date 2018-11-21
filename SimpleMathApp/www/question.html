@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="assets/css/materialize.min.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="assets/css/style.css" media="screen,projection" />
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <style>
+        .alternative {
+            font-size: 2.5rem;
+        }
+    </style>
+</head>
+
+<body class="blue darken-3">
+
+    <div class="container">
+        <div class="row">
+            <form class="">
+                <div class="row">
+                    <div class="card">
+                        <div class="row blue-text text-darken-4">
+                            <div class="col s6">
+                                <strong>Tempo Total:</strong>
+                                <span>mm:ss</span>
+                            </div>
+                            <div class="col s6">
+                                <strong>Total:</strong>
+                                <span>mm:ss</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row white-text">
+                    <p style="height: 15rem;overflow: scroll; margin-bottom: -1rem; margin-top: -2rem;">Lorem ipsum
+                        dolor sit amet, consectetur adipiscing elit. Integer condimentum ipsum nec rhoncus vulputate.
+                        Morbi sodales, purus nec consectetur congue, diam dolor vulputate justo, a posuere turpis velit
+                        in enim. Nullam vulputate placerat consequat. Vivamus interdum sapien diam. Donec viverra augue
+                        sed ultrices rutrum. Donec semper tellus lobortis, laoreet odio eget, hendrerit ipsum. Aenean
+                        feugiat mollis aliquet. In quis tempor nisi, vel aliquet erat.
+
+                        Phasellus facilisis, libero eget sollicitudin pellentesque, libero tortor ultrices libero, a
+                        tincidunt velit orci at leo. Ut interdum libero eu imperdiet fringilla. Aenean non ipsum ipsum.
+                        Aliquam erat volutpat. Mauris ac ipsum eget mauris iaculis cursus. Suspendisse sodales, nulla a
+                        aliquam aliquam, massa enim gravida enim, at placerat eros mauris sed diam. Cras ipsum leo,
+                        tincidunt et tempus quis, malesuada id libero. Nullam vel egestas leo.
+
+                        Nam nec iaculis purus. Vestibulum nisl tortor, mollis condimentum rutrum sed, elementum sed
+                        dolor. Maecenas a purus sed eros malesuada malesuada. Aenean ut condimentum libero. Mauris
+                        cursus tincidunt orci, eget malesuada dui. Duis scelerisque turpis quis felis maximus aliquet.
+                        Nulla ultricies nulla id consequat tempor. Vestibulum id mollis sapien, vel condimentum enim.
+                        Sed euismod maximus justo sit amet malesuada. Pellentesque vitae enim pretium, laoreet arcu
+                        eget, luctus urna.
+                        <br>a) 1
+                        <br>b) 2
+                        <br>c) 3
+                        <br>d) 4
+                    </p>
+                </div>
+                <div class="row center-align">
+                    <div class="col s1"></div>
+                    <div class="col s2">
+                        <div class="card">
+                            <div class="center-align red-text alternative" id="a">
+                                A
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s2">
+                        <div class="card">
+                            <div class="center-align green-text alternative" id="b">
+                                B
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s2">
+                        <div class="card">
+                            <div class="center-align orange-text alternative" id="c">
+                                C
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s2">
+                        <div class="card">
+                            <div class="center-align purple-text alternative" id="d">
+                                D
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s2">
+                        <div class="card">
+                            <div class="center-align brown-text alternative" id="e">
+                                E
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+
+
+    <!--JavaScript at end of body for optimized loading-->
+    <script type="text/javascript" src="assets/js/jquery-3.3.1.slim.min.js"></script>
+    <script type="text/javascript" src="assets/js/materialize.min.js"></script>
+    <script>
+        var baseUrl = 'http://localhost:8080/simplemath'
+        var answers = [];
+        var quiz;
+        carregarItensTeste();
+        // Novo Quiz
+        function carregarItens() {
+            quiz = null;
+            var url = baseUrl + "/quiz/new/" + usuario.id
+            $.ajax({
+                type: "GET",
+                url: url,
+                timeout: 3000,
+                datatype: 'JSON',
+                contentType: "application/json; charset=utf-8",
+                cache: false,
+                error: function () {
+                    swal({
+                        type: 'error',
+                        title: 'Oops...',
+                        text: 'Aconteceu um erro desconhecido durante sua requisição'
+                    });
+                },
+                success: function (retorno) {
+                    quiz = retorno;
+                }
+            });
+        }
+
+        function carregarItensTeste() {
+            quiz = {
+                questions : [],
+                answers : []
+            };
+            for(i = 0; i < 10; i++) {
+                var question = {
+                    description : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer condimentum ipsum nec rhoncus vulputate. Morbi sodales, purus nec consectetur congue, diam dolor vulputate justo, a posuere turpis velit in enim. Nullam vulputate placerat consequat. Vivamus interdum sapien diam. Donec viverra augue sed ultrices rutrum. Donec semper tellus lobortis, laoreet odio eget, hendrerit ipsum. Aenean feugiat mollis aliquet. In quis tempor nisi, vel aliquet erat.',
+                    alternatives : []
+                };
+                for(j = 0; j < 5; j++) {
+                    var alternative = {
+                        answer: j + i,
+                        correct: j = 3 ? 1 : 0 
+                    };
+                    question.alternatives.push(alternative)
+                }
+                quiz.questions.push(question);
+            }
+              debugger;
+        }
+        // Responder
+        function getQuestion(i) {
+            var question = quiz.questions[i];
+            $("#pergunta").val(question.question);
+        }
+        function answerQuestion(i) {
+            qntRespondidos = $("#respondidos").val();
+            var question = quiz.questions[i];
+            var alternative = question.alternatives[0];
+            var answer = {
+                question: question,
+                answer: alternative
+            }
+            answers.add(answer);
+            $("#respondidos").val(answers.length);
+
+            if (qntRespondidos == answers.size()) {
+                quiz.answers = answers;
+                salvarResposta();
+            } else {
+                getQuestion(qntRespondidos.val());
+            }
+        }
+
+        $('#a').click(function () {
+            answerQuestion(0);
+        });
+        $('#b').click(function () {
+            answerQuestion(1);
+        });
+        $('#c').click(function () {
+            answerQuestion(2);
+        });
+        $('#d').click(function () {
+            answerQuestion(3);
+        });
+        $('#e').click(function () {
+            answerQuestion(4);
+        });
+
+        function salvarResposta() {
+            var url = baseUrl + "/quiz/save/" + id
+            $.ajax({
+                type: "PUT",
+                url: url,
+                data: quiz,
+                timeout: 3000,
+                datatype: 'JSON',
+                contentType: "application/json; charset=utf-8",
+                cache: false,
+                error: function () {
+                    swal({
+                        type: 'error',
+                        title: 'Oops...',
+                        text: 'Aconteceu um erro desconhecido durante sua requisição'
+                    });
+                },
+                success: function (retorno) {
+
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
