@@ -23,6 +23,12 @@
 
 <head>
     <meta charset="utf-8" />
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="assets/css/materialize.min.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="assets/css/style.css" media="screen,projection" />
+
     <meta name="format-detection" content="telephone=no" />
     <meta name="msapplication-tap-highlight" content="no" />
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
@@ -49,11 +55,494 @@
             <p class="event listening">Connecting to Device</p>
             <p class="event received">Device is Ready</p>
         </div>
+        <section class="login">
+            <div class="container">
+
+                <div class="row center-align white-text">
+                    <h4>SimpleMath</h4>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="email" type="text" class="validate">
+                        <label for="email">Login</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="password" type="password" class="validate">
+                        <label for="password">Senha</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <button type="button" onclick="login()" class="btn white blue-text darken-3 col s12">Entrar</button>
+                </div>
+            </div>
+
+        </section>
+        <section class="cadastro">
+            <div class="container">
+                <div class="row center-align white-text">
+                    <h4>DESAFIO ACEITO</h4>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="nome" type="text" class="validate">
+                        <label for="nome">Nome</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="email" type="email" class="validate">
+                        <label for="email">Email</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="telefone" type="text" class="validate">
+                        <label for="telefone">Telefone</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="password" type="password" class="validate">
+                        <label for="password">Senha</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <button type="button" onclick="cadastro()" class="btn white blue-text darken-3 col s12">Registrar</button>
+                </div>
+            </div>
+        </section>
+        <section class="myhome">
+            <div class="container">
+                <div class="row">
+                    <div class="card-panel">
+                        <div class="row green-text">
+                            <strong>Total de Quiz:</strong><span>0</span>
+                        </div>
+                        <div class="row orange-text">
+                            <strong>Média de tempo:</strong><span>0</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <ul class="collection with-header" id="collectionResumo">
+                        <li class="collection-header">
+                            <h4>Últimos Simulados</h4>
+                        </li>
+                    </ul>
+                </div>
+                <div class="row">
+                    <button type="submit" class="btn white blue-text darken-4 col s12"><strong>Quero um desafio</strong></button>
+                </div>
+            </div>
+        </section>
+        <section class="question">
+            <div class="container">
+                <div class="card">
+                    <div class="row blue-text text-darken-4">
+                        <div class="col s6">
+                            <strong>Tempo Total:</strong>
+                            <span>mm:ss</span>
+                        </div>
+                        <div class="col s6">
+                            <strong>Total:</strong>
+                            <span>mm:ss</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row white-text">
+                <p style="height: 15rem;overflow: scroll; margin-bottom: -1rem; margin-top: -2rem;">Lorem ipsum
+                    dolor sit amet, consectetur adipiscing elit. Integer condimentum ipsum nec rhoncus vulputate.
+                    Morbi sodales, purus nec consectetur congue, diam dolor vulputate justo, a posuere turpis velit
+                    in enim. Nullam vulputate placerat consequat. Vivamus interdum sapien diam. Donec viverra augue
+                    sed ultrices rutrum. Donec semper tellus lobortis, laoreet odio eget, hendrerit ipsum. Aenean
+                    feugiat mollis aliquet. In quis tempor nisi, vel aliquet erat.
+
+                    Phasellus facilisis, libero eget sollicitudin pellentesque, libero tortor ultrices libero, a
+                    tincidunt velit orci at leo. Ut interdum libero eu imperdiet fringilla. Aenean non ipsum ipsum.
+                    Aliquam erat volutpat. Mauris ac ipsum eget mauris iaculis cursus. Suspendisse sodales, nulla a
+                    aliquam aliquam, massa enim gravida enim, at placerat eros mauris sed diam. Cras ipsum leo,
+                    tincidunt et tempus quis, malesuada id libero. Nullam vel egestas leo.
+
+                    Nam nec iaculis purus. Vestibulum nisl tortor, mollis condimentum rutrum sed, elementum sed
+                    dolor. Maecenas a purus sed eros malesuada malesuada. Aenean ut condimentum libero. Mauris
+                    cursus tincidunt orci, eget malesuada dui. Duis scelerisque turpis quis felis maximus aliquet.
+                    Nulla ultricies nulla id consequat tempor. Vestibulum id mollis sapien, vel condimentum enim.
+                    Sed euismod maximus justo sit amet malesuada. Pellentesque vitae enim pretium, laoreet arcu
+                    eget, luctus urna.
+                    <br>a) 1
+                    <br>b) 2
+                    <br>c) 3
+                    <br>d) 4
+                </p>
+            </div>
+            <div class="row center-align">
+                <div class="col s1"></div>
+                <div class="col s2">
+                    <div class="card">
+                        <div class="center-align red-text alternative" id="a">
+                            A
+                        </div>
+                    </div>
+                </div>
+                <div class="col s2">
+                    <div class="card">
+                        <div class="center-align green-text alternative" id="b">
+                            B
+                        </div>
+                    </div>
+                </div>
+                <div class="col s2">
+                    <div class="card">
+                        <div class="center-align orange-text alternative" id="c">
+                            C
+                        </div>
+                    </div>
+                </div>
+                <div class="col s2">
+                    <div class="card">
+                        <div class="center-align purple-text alternative" id="d">
+                            D
+                        </div>
+                    </div>
+                </div>
+                <div class="col s2">
+                    <div class="card">
+                        <div class="center-align brown-text alternative" id="e">
+                            E
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Final -->
+        <section class="final">
+            <div class="container">
+                <div class="row">
+                    <div class="card-panel">
+                        <div class="row green-text">
+                            <strong>Acertos:</strong><span>0</span>
+                        </div>
+                        <div class="row red-text">
+                            <strong>Erros:</strong><span>0</span>
+                        </div>
+                        <div class="row orange-text">
+                            <strong>Tempo Médio:</strong><span>0</span>
+                        </div>
+                        <div class="row purple-text">
+                            <strong>Tempo Total:</strong><span>0</span>
+                        </div>
+                        <div class="row brown-text">
+                            <strong>Tempo Esperado:</strong><span>0</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <button type="submit" class="btn white blue-text darken-4 col s12"><strong>Finalizar</strong></button>
+                </div>
+                <div class="row">
+                    <ul class="collection with-header" id="collectionResultado">
+                        <li class="collection-header">
+                            <h4>Resultado</h4>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
     </div>
+
+    <script type="text/javascript" src="assets/js/jquery-3.3.1.slim.min.js"></script>
+    <script type="text/javascript" src="assets/js/materialize.min.js"></script>
+    <script type="text/javascript" src="assets/js/sweetalert2.all.min.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript">
         app.initialize();
+
+        var baseUrl = 'http://localhost:8080';
+        var answers = [];
+        var quiz;
+
+        // LOGIN
+
+        function login() {
+            var url = baseUrl + "/usuarios/login/"
+            var usuario = {
+                email: $('#email').val(),
+                password: $('#password').val()
+            };
+            console.log(usuario);
+            $.ajax({
+                type: "POST",
+                url: url,
+                timeout: 3000,
+                data: JSON.stringify(usuario),
+                datatype: 'JSON',
+                contentType: "application/json; charset=utf-8",
+                cache: false,
+                error: function () {
+                    swal({
+                        type: 'error',
+                        title: 'Oops...',
+                        text: 'Aconteceu um erro desconhecido durante sua requisição'
+                    });
+                },
+                success: function (retorno) {
+                    window.location.href = 'myhome.html';
+                }
+            });
+        }
+
+        // CADASTRO
+        function cadastro() {
+            var url = baseUrl + "/usuarios/"
+            var usuario = {
+                name: $('#nome').val(),
+                email: $('#email').val(),
+                celphoneNumber: $('#telefone').val(),
+                password: $('#password').val()
+            };
+            $.ajax({
+                type: "POST",
+                url: url,
+                timeout: 3000,
+                data: JSON.stringify(usuario),
+                datatype: 'JSON',
+                contentType: "application/json; charset=utf-8",
+                cache: false,
+                error: function () {
+                    swal({
+                        type: 'error',
+                        title: 'Oops...',
+                        text: 'Aconteceu um erro desconhecido durante sua requisição'
+                    });
+                },
+                success: function (retorno) {
+                    swal({
+                        type: 'success',
+                        title: 'Cadastro realizado com sucesso!',
+                        timer: 1500
+                    });
+                }
+            });
+        }
+
+        // MYHOME
+        function carregarItens_MyHome() {
+            var url = baseUrl + "/quiz/resumo/" + usuario.id
+            $.ajax({
+                type: "GET",
+                url: url,
+                timeout: 3000,
+                datatype: 'JSON',
+                contentType: "application/json; charset=utf-8",
+                cache: false,
+                error: function () {
+                    swal({
+                        type: 'error',
+                        title: 'Oops...',
+                        text: 'Aconteceu um erro desconhecido durante sua requisição'
+                    });
+                },
+                success: function (retorno) {
+                    var listaResumo = retorno
+                    $.each(listaResumo, function (i, resumo) {
+                        var item = '<span class="title">' + resumo.data + '</span>';
+                        item += '<p>' + resumo.tempo + '<br>';
+                        item += '<span>' + resumo.acertos + '/<span>';
+                        item += '<span>' + resumos.erros + '</span>' + '</p>';
+                        var li = '<li class="collection-item">' + item + '</li>';
+                        $('#collectionResumo ul').append(li);
+                    });
+                }
+            });
+        }
+
+        function carregarItensTeste_MyHome() {
+            var retorno = [];
+            for (i = 0; i < 5; i++) {
+                var dia = 3 + i;
+                var obj = {
+                    data: '0' + dia + '/11/2018 13:13',
+                    tempo: '01:2' + i,
+                    acertos: 9,
+                    erros: 6
+                }
+                retorno.push(obj);
+            }
+            var listaResultado = retorno;
+            $.each(listaResultado, function (i, resumo) {
+                var item = '<span class="title">' + resumo.data + '</span>';
+                item += '<p>' + resumo.tempo + '<br>';
+                item += '<span>' + resumo.acertos + '/<span>';
+                item += '<span>' + resumo.erros + '</span>' + '</p>';
+                var li = '<li class="collection-item">' + item + '</li>';
+                $('#collectionResumo').append(li);
+                console.log(li);
+            });
+        }
+
+        // QUESTION
+
+        // Novo Quiz
+        function carregarItens() {
+            quiz = null;
+            var url = baseUrl + "/quiz/new/" + usuario.id
+            $.ajax({
+                type: "GET",
+                url: url,
+                timeout: 3000,
+                datatype: 'JSON',
+                contentType: "application/json; charset=utf-8",
+                cache: false,
+                error: function () {
+                    swal({
+                        type: 'error',
+                        title: 'Oops...',
+                        text: 'Aconteceu um erro desconhecido durante sua requisição'
+                    });
+                },
+                success: function (retorno) {
+                    quiz = retorno;
+                }
+            });
+        }
+
+        function carregarItensTeste() {
+            quiz = {
+                questions: [],
+                answers: []
+            };
+            for (i = 0; i < 10; i++) {
+                var question = {
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer condimentum ipsum nec rhoncus vulputate. Morbi sodales, purus nec consectetur congue, diam dolor vulputate justo, a posuere turpis velit in enim. Nullam vulputate placerat consequat. Vivamus interdum sapien diam. Donec viverra augue sed ultrices rutrum. Donec semper tellus lobortis, laoreet odio eget, hendrerit ipsum. Aenean feugiat mollis aliquet. In quis tempor nisi, vel aliquet erat.',
+                    alternatives: []
+                };
+                for (j = 0; j < 5; j++) {
+                    var alternative = {
+                        answer: j + i,
+                        correct: j = 3 ? 1 : 0
+                    };
+                    question.alternatives.push(alternative)
+                }
+                quiz.questions.push(question);
+            }
+            debugger;
+        }
+        // Responder
+        function getQuestion(i) {
+            var question = quiz.questions[i];
+            $("#pergunta").val(question.question);
+        }
+        function answerQuestion(i) {
+            qntRespondidos = $("#respondidos").val();
+            var question = quiz.questions[i];
+            var alternative = question.alternatives[0];
+            var answer = {
+                question: question,
+                answer: alternative
+            }
+            answers.add(answer);
+            $("#respondidos").val(answers.length);
+
+            if (qntRespondidos == answers.size()) {
+                quiz.answers = answers;
+                salvarResposta();
+            } else {
+                getQuestion(qntRespondidos.val());
+            }
+        }
+
+        $('#a').click(function () {
+            answerQuestion(0);
+        });
+        $('#b').click(function () {
+            answerQuestion(1);
+        });
+        $('#c').click(function () {
+            answerQuestion(2);
+        });
+        $('#d').click(function () {
+            answerQuestion(3);
+        });
+        $('#e').click(function () {
+            answerQuestion(4);
+        });
+
+        function salvarResposta() {
+            var url = baseUrl + "/quiz/save/" + id
+            $.ajax({
+                type: "PUT",
+                url: url,
+                data: quiz,
+                timeout: 3000,
+                datatype: 'JSON',
+                contentType: "application/json; charset=utf-8",
+                cache: false,
+                error: function () {
+                    swal({
+                        type: 'error',
+                        title: 'Oops...',
+                        text: 'Aconteceu um erro desconhecido durante sua requisição'
+                    });
+                },
+                success: function (retorno) {
+
+                }
+            });
+        }
+
+        // FINAL
+        function carregarItens_Final() {
+            var url = baseUrl + "/quiz/resultado/" + id
+            $.ajax({
+                type: "GET",
+                url: url,
+                timeout: 3000,
+                datatype: 'JSON',
+                contentType: "application/json; charset=utf-8",
+                cache: false,
+                error: function () {
+                    swal({
+                        type: 'error',
+                        title: 'Oops...',
+                        text: 'Aconteceu um erro desconhecido durante sua requisição'
+                    });
+                },
+                success: function (retorno) {
+                    var listaResultado = retorno;
+                    $.each(listaResultado, function (i, resultado) {
+                        var item = '<span class="title">' + resultado.correto + '</span>';
+                        item += '<p>' + resultado.tempo + '</p>';
+                        var li = '<li class="collection-item">' + item + '</li>';
+                        $('#collectionResultado ul').append(li);
+                    });
+                }
+            });
+        }
+
+        function carregarItensTeste_Final() {
+            var retorno = [];
+            for (i = 0; i < 5; i++) {
+                var obj = {
+                    correto: 1,
+                    tempo: '01:2' + i
+                }
+                retorno.push(obj);
+            }
+            var listaResultado = retorno;
+            $.each(listaResultado, function (i, resultado) {
+                var item = '<span class="title">' + resultado.correto ? 'Correto' : 'Errado' + '</span>';
+                item += '<p>' + resultado.tempo + '</p>';
+                var li = '<li class="collection-item">' + item + '</li>';
+                $('ul#collectionResultado').append(li);
+                console.log(li);
+            });
+        }
     </script>
 </body>
 
