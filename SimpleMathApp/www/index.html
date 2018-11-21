@@ -1,24 +1,4 @@
 <!DOCTYPE html>
-<!--
-    Copyright (c) 2012-2016 Adobe Systems Incorporated. All rights reserved.
-
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
 <html>
 
 <head>
@@ -52,18 +32,18 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="email" type="text" class="validate">
-                        <label for="email">Login</label>
+                        <input id="emailLogin" type="text" class="validate">
+                        <label for="emailLogin">Login</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="password" type="password" class="validate">
-                        <label for="password">Senha</label>
+                        <input id="passwordLogin" type="password" class="validate">
+                        <label for="passpasswordLoginword">Senha</label>
                     </div>
                 </div>
                 <div class="row">
-                    <button type="button" onclick="login()" class="btn white blue-text darken-3 col s12">Entrar</button>
+                    <button type="button" onclick="login()" class="btn white blue-text darken-3 col s12 waves-effect">Entrar</button>
                 </div>
             </div>
 
@@ -98,7 +78,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <button type="button" onclick="cadastro()" class="btn white blue-text darken-3 col s12">Registrar</button>
+                    <button type="button" onclick="cadastro()" class="btn white blue-text darken-3 col s12 waves-effect">Registrar</button>
                 </div>
             </div>
         </section>
@@ -122,7 +102,7 @@
                     </ul>
                 </div>
                 <div class="row">
-                    <button type="submit" class="btn white blue-text darken-4 col s12"><strong>Quero um desafio</strong></button>
+                    <button type="button" onclick="novoDesafio()" class="btn white blue-text darken-4 col s12 waves-effect"><strong>Quero um desafio</strong></button>
                 </div>
             </div>
         </section>
@@ -168,43 +148,14 @@
                 </p>
             </div>
             <div class="row center-align">
-                <div class="col s1"></div>
-                <div class="col s2">
-                    <div class="card">
-                        <div class="center-align red-text alternative" id="a">
-                            A
-                        </div>
-                    </div>
-                </div>
-                <div class="col s2">
-                    <div class="card">
-                        <div class="center-align green-text alternative" id="b">
-                            B
-                        </div>
-                    </div>
-                </div>
-                <div class="col s2">
-                    <div class="card">
-                        <div class="center-align orange-text alternative" id="c">
-                            C
-                        </div>
-                    </div>
-                </div>
-                <div class="col s2">
-                    <div class="card">
-                        <div class="center-align purple-text alternative" id="d">
-                            D
-                        </div>
-                    </div>
-                </div>
-                <div class="col s2">
-                    <div class="card">
-                        <div class="center-align brown-text alternative" id="e">
-                            E
-                        </div>
-                    </div>
-                </div>
+                            
+            <button type="button" onclick="answerQuestion(0)" class="btn white red-text  alternative waves-effect">A</button>
+            <button type="button" onclick="answerQuestion(1)" class="btn white green-text alternative waves-effect">B</button>
+            <button type="button" onclick="answerQuestion(2)" class="btn white brown-text alternative waves-effect">C</button>
+            <button type="button" onclick="answerQuestion(3)" class="btn white orange-text alternative waves-effect">D</button>
+            <button type="button" onclick="answerQuestion(4)" class="btn white purple-text alternative waves-effect">E</button>
             </div>
+
 
         </section>
 
@@ -231,7 +182,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <button type="submit" class="btn white blue-text darken-4 col s12"><strong>Finalizar</strong></button>
+                    <button type="button" onclick="finalizar()" class="btn white blue-text darken-4 col s12 waves-effect"><strong>Finalizar</strong></button>
                 </div>
                 <div class="row">
                     <ul class="collection with-header" id="collectionResultado">
@@ -261,8 +212,8 @@
         function login() {
             var url = baseUrl + "/usuarios/login/"
             var usuario = {
-                email: $('#email').val(),
-                password: $('#password').val()
+                email: $('#emailLogin').val(),
+                password: $('#passwordLogin').val()
             };
             console.log(usuario);
             $.ajax({
@@ -445,22 +396,6 @@
                 getQuestion(qntRespondidos.val());
             }
         }
-
-        $('#a').click(function () {
-            answerQuestion(0);
-        });
-        $('#b').click(function () {
-            answerQuestion(1);
-        });
-        $('#c').click(function () {
-            answerQuestion(2);
-        });
-        $('#d').click(function () {
-            answerQuestion(3);
-        });
-        $('#e').click(function () {
-            answerQuestion(4);
-        });
 
         function salvarResposta() {
             var url = baseUrl + "/quiz/save/" + id
