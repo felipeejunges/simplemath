@@ -19,6 +19,28 @@ public class QuizService {
 
 	@Autowired
 	private QuizRepository repo;
+	private AnswerRepository answerRepo;
+	private UsuarioService usuarioService;
+	private AlternativeService alternativeService;
+
+	public Quiz save(Quiz quiz) {
+		List<Answer> answers = new ArrayList<>();
+		for(Answer answer : quiz.answers) {
+			answer.setUsuario(quiz.getUsuario());
+		}
+		alternativeRepo.saveAll(answers);
+		quiz.answers = answers;
+		repo.save(quiz);
+		return quiz;
+	}
+
+	public Quiz new(UUID usuarioID) {
+		Quiz quiz = new Quiz();
+		// pegar usuario
+		// pegar questoes random
+		quiz.setUsuario()
+		return quiz;
+	}
 	
 	public Quiz find(UUID id) {
 		Optional<Quiz> obj = repo.findById(id);

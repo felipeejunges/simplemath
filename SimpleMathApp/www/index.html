@@ -336,6 +336,7 @@
         // Novo Quiz
         function carregarItens() {
             quiz = null;
+            answers = [];
             var url = baseUrl + "/quiz/new/" + usuario.id
             $.ajax({
                 type: "GET",
