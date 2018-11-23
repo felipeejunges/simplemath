@@ -24,7 +24,7 @@
                 <a href="#" class="brand-logo">SimpleMath</a>
             </div>
         </nav>
-        <section class="login">
+        <section id="login">
             <div class="container">
 
                 <div class="row center-align white-text">
@@ -48,7 +48,7 @@
             </div>
 
         </section>
-        <section class="cadastro">
+        <section id="cadastro">
             <div class="container">
                 <div class="row center-align white-text">
                     <h4>DESAFIO ACEITO</h4>
@@ -82,15 +82,15 @@
                 </div>
             </div>
         </section>
-        <section class="myhome">
+        <section id="myhome">
             <div class="container">
                 <div class="row">
                     <div class="card-panel">
                         <div class="row green-text">
-                            <strong>Total de Quiz:</strong><span>0</span>
+                            <strong>Total de Quiz:</strong><span id="totalQuiz_Resumo">0</span>
                         </div>
                         <div class="row orange-text">
-                            <strong>Média de tempo:</strong><span>0</span>
+                            <strong>Média de tempo:</strong><span id="mediaTempo_Resumo">0</span>
                         </div>
                     </div>
                 </div>
@@ -106,23 +106,23 @@
                 </div>
             </div>
         </section>
-        <section class="question">
+        <section id="question">
             <div class="container">
                 <div class="card">
                     <div class="row blue-text text-darken-4">
                         <div class="col s6">
                             <strong>Tempo Total:</strong>
-                            <span>mm:ss</span>
+                            <span id="tempoTotal_Questao">mm:ss</span>
                         </div>
                         <div class="col s6">
-                            <strong>Total:</strong>
-                            <span>mm:ss</span>
+                            <strong>Tempo:</strong>
+                            <span id="tempoAtual_Questao">mm:ss</span>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row white-text">
-                <p style="height: 15rem;overflow: scroll; margin-bottom: -1rem; margin-top: -2rem;">Lorem ipsum
+                <p style="height: 30rem;overflow: scroll;" id="pQuestao">Lorem ipsum
                     dolor sit amet, consectetur adipiscing elit. Integer condimentum ipsum nec rhoncus vulputate.
                     Morbi sodales, purus nec consectetur congue, diam dolor vulputate justo, a posuere turpis velit
                     in enim. Nullam vulputate placerat consequat. Vivamus interdum sapien diam. Donec viverra augue
@@ -160,24 +160,24 @@
         </section>
 
         <!-- Final -->
-        <section class="final">
+        <section id="final">
             <div class="container">
                 <div class="row">
                     <div class="card-panel">
                         <div class="row green-text">
-                            <strong>Acertos:</strong><span>0</span>
+                            <strong>Acertos:</strong><span id="qntAcertos_Final">0</span>
                         </div>
                         <div class="row red-text">
-                            <strong>Erros:</strong><span>0</span>
+                            <strong>Erros:</strong><span id="qntErros_Final">0</span>
                         </div>
                         <div class="row orange-text">
-                            <strong>Tempo Médio:</strong><span>0</span>
+                            <strong>Tempo Médio:</strong><span id="tempoMedio_Final">0</span>
                         </div>
                         <div class="row purple-text">
-                            <strong>Tempo Total:</strong><span>0</span>
+                            <strong>Tempo Total:</strong><span id="tempoTotal_Final">0</span>
                         </div>
                         <div class="row brown-text">
-                            <strong>Tempo Esperado:</strong><span>0</span>
+                            <strong>Tempo Esperado:</strong><span id="tempoEsperado_Final">0</span>
                         </div>
                     </div>
                 </div>
@@ -207,8 +207,13 @@
         var answers = [];
         var quiz;
 
-        // LOGIN
+         //$( "#login" ).addClass("hide");
+         $( "#cadastro" ).addClass("hide");
+         $( "#myhome" ).addClass("hide");
+         $( "#final" ).addClass("hide");
+         $( "#question" ).addClass("hide");
 
+        // LOGIN
         function login() {
             var url = baseUrl + "/usuarios/login/"
             var usuario = {
@@ -232,7 +237,8 @@
                     });
                 },
                 success: function (retorno) {
-                    window.location.href = 'myhome.html';
+                    $( "#login" ).addClass("hide");
+                    $( "#cadastro" ).removeClass("hide");
                 }
             });
         }
@@ -267,6 +273,8 @@
                         title: 'Cadastro realizado com sucesso!',
                         timer: 1500
                     });
+                    $( "#cadastro" ).addClass("hide");
+                    $( "#login" ).removeClass("hide");
                 }
             });
         }
@@ -303,10 +311,6 @@
         }
 
 
-        function novoDesafio() {
-
-        }
-
         function carregarItensTeste_MyHome() {
             var retorno = [];
             for (i = 0; i < 5; i++) {
@@ -334,7 +338,7 @@
         // QUESTION
 
         // Novo Quiz
-        function carregarItens() {
+        function novoDesafio() {
             quiz = null;
             answers = [];
             var url = baseUrl + "/quiz/new/" + usuario.id
@@ -354,6 +358,8 @@
                 },
                 success: function (retorno) {
                     quiz = retorno;
+                    $( "#myhome" ).addClass("hide");
+                    $( "#question" ).removeClass("hide");
                 }
             });
         }
@@ -377,7 +383,6 @@
                 }
                 quiz.questions.push(question);
             }
-            debugger;
         }
         // Responder
         function getQuestion(i) {
@@ -421,7 +426,8 @@
                     });
                 },
                 success: function (retorno) {
-
+                    $( "#question" ).addClass("hide");
+                    $( "#final" ).removeClass("hide");
                 }
             });
         }
@@ -456,7 +462,8 @@
         }
 
         function finalizar() {
-
+            $( "#final" ).addClass("hide");
+            $( "#myhome" ).removeClass("hide");
         }
 
         function carregarItensTeste_Final() {
