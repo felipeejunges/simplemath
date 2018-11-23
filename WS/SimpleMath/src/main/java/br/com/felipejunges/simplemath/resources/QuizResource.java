@@ -34,7 +34,7 @@ public class QuizResource {
 
     @RequestMapping(value="/new/{id}", method=RequestMethod.GET)
 	public ResponseEntity<?> find(@PathVariable UUID usuarioID) {
-		Quiz obj = service.find(id);
+		Quiz obj = service.new(id);
 		return ResponseEntity.ok().body(obj);
 	}
 

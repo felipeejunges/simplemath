@@ -23,10 +23,8 @@ public class Quiz implements Serializable {
     private UUID id;
     private boolean unactive;
 
-    @JsonIgnore
     @OneToMany(mappedBy="quiz")
     private List<Answer> answers = new ArrayList<>();
-
 
     @JsonIgnore
     @ManyToMany
@@ -36,7 +34,6 @@ public class Quiz implements Serializable {
     )
     private List<Question> questions = new ArrayList<>();
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name="user_id")
     private Usuario user;

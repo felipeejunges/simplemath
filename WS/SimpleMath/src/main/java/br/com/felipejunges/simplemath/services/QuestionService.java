@@ -33,6 +33,10 @@ public class QuestionService {
 	public List<Question> findAll() {
 		return repo.findAll();
 	}
+
+	public List<Question> findQuestions() {
+		return repo.findAllOrderByRand();
+	}
 	
 	public Page<Question> findPage(int page, int linesPerPage, String orderBy, String direction) {
 		PageRequest pageRequest = PageRequest.of(page,  linesPerPage, Direction.valueOf(direction), orderBy);

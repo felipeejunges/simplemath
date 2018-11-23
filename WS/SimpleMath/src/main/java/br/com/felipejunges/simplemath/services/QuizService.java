@@ -22,11 +22,13 @@ public class QuizService {
 	private AnswerRepository answerRepo;
 	private UsuarioService usuarioService;
 	private AlternativeService alternativeService;
+	private AlternativeService questionService;
 
 	public Quiz save(Quiz quiz) {
 		List<Answer> answers = new ArrayList<>();
 		for(Answer answer : quiz.answers) {
 			answer.setUsuario(quiz.getUsuario());
+			answer.setQuiz(quiz);
 		}
 		alternativeRepo.saveAll(answers);
 		quiz.answers = answers;
@@ -35,10 +37,8 @@ public class QuizService {
 	}
 
 	public Quiz new(UUID usuarioID) {
-		Quiz quiz = new Quiz();
-		// pegar usuario
-		// pegar questoes random
-		quiz.setUsuario()
+		Quiz obj = new Quiz(false, usuarioID);
+		obj.setQuestions(questionService.findQuestions());
 		return quiz;
 	}
 	

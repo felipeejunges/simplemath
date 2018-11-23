@@ -22,7 +22,6 @@ public class Answer implements Serializable {
     private boolean unactive;
     private long time;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name="alternative_id")
     private Alternative alternative;
