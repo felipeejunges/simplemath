@@ -244,8 +244,6 @@
                 success: function (retorno) {
                     changeSection("login", "myhome");
                     carregarItens_MyHome();
-                    // $( "#login" ).addClass("hide");
-                    // $( "#cadastro" ).removeClass("hide");
                 }
             });
         }
@@ -281,8 +279,6 @@
                         timer: 1500
                     });
                     changeSection("login", "cadastro");
-                    // $( "#cadastro" ).addClass("hide");
-                    // $( "#login" ).removeClass("hide");
                 }
             });
         }
@@ -367,8 +363,6 @@
                 success: function (retorno) {
                     quiz = retorno;
                     changeSection("myhome", "question");
-                    // $( "#myhome" ).addClass("hide");
-                    // $( "#question" ).removeClass("hide");
                 }
             });
         }
@@ -436,8 +430,6 @@
                 },
                 success: function (retorno) {
                     changeSection("question", "final")
-                    // $( "#question" ).addClass("hide");
-                    // $( "#final" ).removeClass("hide");
                 }
             });
         }
