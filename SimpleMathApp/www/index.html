@@ -110,11 +110,15 @@
             <div class="container">
                 <div class="card">
                     <div class="row blue-text text-darken-4">
-                        <div class="col s6">
+                        <div class="col s4">
+                            <strong>Respondidos:</strong>
+                            <span id="respondidos">0</span>
+                        </div>
+                        <div class="col s4">
                             <strong>Tempo Total:</strong>
                             <span id="tempoTotal_Questao">mm:ss</span>
                         </div>
-                        <div class="col s6">
+                        <div class="col s4">
                             <strong>Tempo:</strong>
                             <span id="tempoAtual_Questao">mm:ss</span>
                         </div>
@@ -200,6 +204,11 @@
     <script type="text/javascript" src="js/sweetalert2.all.min.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/login.js"></script>
+    <script type="text/javascript" src="js/cadastro.js"></script>
+    <script type="text/javascript" src="js/myhome.js"></script>
+    <script type="text/javascript" src="js/questao.js"></script>
+    <script type="text/javascript" src="js/final.js"></script>
     <script type="text/javascript">
         app.initialize();
 
@@ -218,275 +227,6 @@
             $( "#" + sectionAbrir ).removeClass("hide");
         } 
 
-        // LOGIN
-        function login() {
-            var url = baseUrl + "/usuarios/login/"
-            var usuario = {
-                email: $('#emailLogin').val(),
-                password: $('#passwordLogin').val()
-            };
-            console.log(usuario);
-            $.ajax({
-                type: "POST",
-                url: url,
-                timeout: 3000,
-                data: JSON.stringify(usuario),
-                datatype: 'JSON',
-                contentType: "application/json; charset=utf-8",
-                cache: false,
-                error: function () {
-                    swal({
-                        type: 'error',
-                        title: 'Oops...',
-                        text: 'Aconteceu um erro desconhecido durante sua requisição'
-                    });
-                },
-                success: function (retorno) {
-                    changeSection("login", "myhome");
-                    carregarItens_MyHome();
-                }
-            });
-        }
-
-        // CADASTRO
-        function cadastro() {
-            var url = baseUrl + "/usuarios/"
-            var usuario = {
-                name: $('#nome').val(),
-                email: $('#email').val(),
-                celphoneNumber: $('#telefone').val(),
-                password: $('#password').val()
-            };
-            $.ajax({
-                type: "POST",
-                url: url,
-                timeout: 3000,
-                data: JSON.stringify(usuario),
-                datatype: 'JSON',
-                contentType: "application/json; charset=utf-8",
-                cache: false,
-                error: function () {
-                    swal({
-                        type: 'error',
-                        title: 'Oops...',
-                        text: 'Aconteceu um erro desconhecido durante sua requisição'
-                    });
-                },
-                success: function (retorno) {
-                    swal({
-                        type: 'success',
-                        title: 'Cadastro realizado com sucesso!',
-                        timer: 1500
-                    });
-                    changeSection("login", "cadastro");
-                }
-            });
-        }
-
-        // MYHOME
-        function carregarItens_MyHome() {
-            var url = baseUrl + "/quiz/resumo/" + usuario.id
-            $.ajax({
-                type: "GET",
-                url: url,
-                timeout: 3000,
-                datatype: 'JSON',
-                contentType: "application/json; charset=utf-8",
-                cache: false,
-                error: function () {
-                    swal({
-                        type: 'error',
-                        title: 'Oops...',
-                        text: 'Aconteceu um erro desconhecido durante sua requisição'
-                    });
-                },
-                success: function (retorno) {
-                    var listaResumo = retorno
-                    $.each(listaResumo, function (i, resumo) {
-                        var item = '<span class="title">' + resumo.data + '</span>';
-                        item += '<p>' + resumo.tempo + '<br>';
-                        item += '<span>' + resumo.acertos + '/<span>';
-                        item += '<span>' + resumos.erros + '</span>' + '</p>';
-                        var li = '<li class="collection-item">' + item + '</li>';
-                        $('#collectionResumo ul').append(li);
-                    });
-                }
-            });
-        }
-
-
-        function carregarItensTeste_MyHome() {
-            var retorno = [];
-            for (i = 0; i < 5; i++) {
-                var dia = 3 + i;
-                var obj = {
-                    data: '0' + dia + '/11/2018 13:13',
-                    tempo: '01:2' + i,
-                    acertos: 9,
-                    erros: 6
-                }
-                retorno.push(obj);
-            }
-            var listaResultado = retorno;
-            $.each(listaResultado, function (i, resumo) {
-                var item = '<span class="title">' + resumo.data + '</span>';
-                item += '<p>' + resumo.tempo + '<br>';
-                item += '<span>' + resumo.acertos + '/<span>';
-                item += '<span>' + resumo.erros + '</span>' + '</p>';
-                var li = '<li class="collection-item">' + item + '</li>';
-                $('#collectionResumo').append(li);
-                console.log(li);
-            });
-        }
-
-        // QUESTION
-
-        // Novo Quiz
-        function novoDesafio() {
-            quiz = null;
-            answers = [];
-            var url = baseUrl + "/quiz/new/" + usuario.id
-            $.ajax({
-                type: "GET",
-                url: url,
-                timeout: 3000,
-                datatype: 'JSON',
-                contentType: "application/json; charset=utf-8",
-                cache: false,
-                error: function () {
-                    swal({
-                        type: 'error',
-                        title: 'Oops...',
-                        text: 'Aconteceu um erro desconhecido durante sua requisição'
-                    });
-                },
-                success: function (retorno) {
-                    quiz = retorno;
-                    changeSection("myhome", "question");
-                }
-            });
-        }
-
-        function carregarItensTeste() {
-            quiz = {
-                questions: [],
-                answers: []
-            };
-            for (i = 0; i < 10; i++) {
-                var question = {
-                    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer condimentum ipsum nec rhoncus vulputate. Morbi sodales, purus nec consectetur congue, diam dolor vulputate justo, a posuere turpis velit in enim. Nullam vulputate placerat consequat. Vivamus interdum sapien diam. Donec viverra augue sed ultrices rutrum. Donec semper tellus lobortis, laoreet odio eget, hendrerit ipsum. Aenean feugiat mollis aliquet. In quis tempor nisi, vel aliquet erat.',
-                    alternatives: []
-                };
-                for (j = 0; j < 5; j++) {
-                    var alternative = {
-                        answer: j + i,
-                        correct: j = 3 ? 1 : 0
-                    };
-                    question.alternatives.push(alternative)
-                }
-                quiz.questions.push(question);
-            }
-        }
-        // Responder
-        function getQuestion(i) {
-            var question = quiz.questions[i];
-            $("#pergunta").val(question.question);
-        }
-        function answerQuestion(i) {
-            qntRespondidos = $("#respondidos").val();
-            var question = quiz.questions[i];
-            var alternative = question.alternatives[0];
-            var answer = {
-                question: question,
-                answer: alternative
-            }
-            answers.add(answer);
-            $("#respondidos").val(answers.length);
-
-            if (qntRespondidos == answers.size()) {
-                quiz.answers = answers;
-                salvarResposta();
-            } else {
-                getQuestion(qntRespondidos.val());
-            }
-        }
-
-        function salvarResposta() {
-            var url = baseUrl + "/quiz/save/" + id
-            $.ajax({
-                type: "PUT",
-                url: url,
-                data: quiz,
-                timeout: 3000,
-                datatype: 'JSON',
-                contentType: "application/json; charset=utf-8",
-                cache: false,
-                error: function () {
-                    swal({
-                        type: 'error',
-                        title: 'Oops...',
-                        text: 'Aconteceu um erro desconhecido durante sua requisição'
-                    });
-                },
-                success: function (retorno) {
-                    changeSection("question", "final")
-                }
-            });
-        }
-
-        // FINAL
-        function carregarItens_Final() {
-            var url = baseUrl + "/quiz/resultado/" + id
-            $.ajax({
-                type: "GET",
-                url: url,
-                timeout: 3000,
-                datatype: 'JSON',
-                contentType: "application/json; charset=utf-8",
-                cache: false,
-                error: function () {
-                    swal({
-                        type: 'error',
-                        title: 'Oops...',
-                        text: 'Aconteceu um erro desconhecido durante sua requisição'
-                    });
-                },
-                success: function (retorno) {
-                    var listaResultado = retorno;
-                    $.each(listaResultado, function (i, resultado) {
-                        var item = '<span class="title">' + resultado.correto + '</span>';
-                        item += '<p>' + resultado.tempo + '</p>';
-                        var li = '<li class="collection-item">' + item + '</li>';
-                        $('#collectionResultado ul').append(li);
-                    });
-                }
-            });
-        }
-
-        function finalizar() {
-            changeSection("final", "myhome")
-            // $( "#final" ).addClass("hide");
-            // $( "#myhome" ).removeClass("hide");
-        }
-
-        function carregarItensTeste_Final() {
-            var retorno = [];
-            for (i = 0; i < 5; i++) {
-                var obj = {
-                    correto: 1,
-                    tempo: '01:2' + i
-                }
-                retorno.push(obj);
-            }
-            var listaResultado = retorno;
-            $.each(listaResultado, function (i, resultado) {
-                var item = '<span class="title">' + resultado.correto ? 'Correto' : 'Errado' + '</span>';
-                item += '<p>' + resultado.tempo + '</p>';
-                var li = '<li class="collection-item">' + item + '</li>';
-                $('ul#collectionResultado').append(li);
-                console.log(li);
-            });
-        }
     </script>
 </body>
 
