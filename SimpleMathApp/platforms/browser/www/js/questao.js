@@ -1,6 +1,7 @@
 function novoDesafio() {
     quiz = null;
     answers = [];
+    alternatives: [];
     var url = baseUrl + "/quiz/new/" + getValor("id")
     $.ajax({
         type: "GET",
@@ -64,15 +65,15 @@ function forEachAlternative(item, index) {
 
 function answerQuestion(i) {
     qntRespondidos = $("#respondidos").text();
-    var questionObj = quiz.questions[i];
+    var questionObj = quiz.questions[qntRespondidos];
     var alternative = questionObj.alternatives[i];
     var answer = {
-        answer: alternative
+        "alternative": alternative
     }
     answers.push(answer);
     $("#respondidos").text(answers.length);
     console.log(answer);
-    if (qntRespondidos == quiz.questions.length) {
+    if (qntRespondidos == quiz.questions.length - 1) {
         quiz.answers = answers;
         salvarResposta();
     } else {
@@ -81,13 +82,11 @@ function answerQuestion(i) {
 }
 
 function salvarResposta() {
-    var url = baseUrl + "/quiz/save/" + quiz.id;
-    delete quiz.id;
-    delete quiz.unactive;
+    var url = baseUrl + "/quiz/save"
     $.ajax({
-        type: "PUT",
+        type: "POST",
         url: url,
-        data: quiz,
+        data: JSON.stringify(quiz),
         timeout: 3000,
         datatype: 'JSON',
         contentType: "application/json; charset=utf-8",
@@ -100,6 +99,7 @@ function salvarResposta() {
             });
         },
         success: function (retorno) {
+            carregarItens_Final();
             changeSection("question", "final")
         }
     });

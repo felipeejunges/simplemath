@@ -16,14 +16,18 @@ function carregarItens_MyHome() {
         },
         success: function (retorno) {
             var listaResumo = retorno
+            var tempo = 0;
             $.each(listaResumo, function (i, resumo) {
+                tempo += resumo.tempo;
                 var item = '<span class="title">' + resumo.data + '</span>';
                 item += '<p>' + resumo.tempo + '<br>';
-                item += '<span>' + resumo.acertos + '/<span>';
-                item += '<span>' + resumos.erros + '</span>' + '</p>';
+                item += '<strong><span class="green-text">' + resumo.acertos + '</span>/';
+                item += '<span class="red-text">' + resumo.erros + '</span></strong>' + '</p>';
                 var li = '<li class="collection-item">' + item + '</li>';
-                $('#collectionResumo ul').append(li);
+                $('#collectionResumo').append(li);
             });
+            $("#totalQuiz_Resumo").text(listaResumo.length);
+            $("#mediaTempo_Resumo").text(tempo / listaResumo.length);
         }
     });
 }

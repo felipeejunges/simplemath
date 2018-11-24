@@ -104,14 +104,14 @@
                     </div>
                 </div>
                 <div class="row">
+                    <button type="button" onclick="novoDesafio()" class="btn white blue-text darken-4 col s12 waves-effect"><strong>Quero um desafio</strong></button>
+                </div>
+                <div class="row">
                     <ul class="collection with-header" id="collectionResumo">
                         <li class="collection-header">
                             <h4>Últimos Simulados</h4>
                         </li>
                     </ul>
-                </div>
-                <div class="row">
-                    <button type="button" onclick="novoDesafio()" class="btn white blue-text darken-4 col s12 waves-effect"><strong>Quero um desafio</strong></button>
                 </div>
             </div>
         </section>
@@ -225,13 +225,7 @@
         var baseUrl = 'http://localhost:8080';
         var answers = [];
         var quiz;
-        carregarItensTeste_Final();
         estaLogado()
-        // $( "#login" ).addClass("hide");
-        // $( "#cadastro" ).addClass("hide");
-        // $( "#myhome" ).addClass("hide");
-        // $( "#final" ).addClass("hide");
-        // $( "#question" ).addClass("hide");
 
         function changeSection(sectionFechar, sectionAbrir) {
             $( "#" + sectionFechar ).addClass("hide");

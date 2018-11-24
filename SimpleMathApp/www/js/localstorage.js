@@ -28,9 +28,11 @@ function estaLogado() {
     $( "#question" ).addClass("hide");
     if (window.localStorage.getItem(keyID) == null) {
          $( "#myhome" ).addClass("hide");
+         $( "#login" ).removeClass("hide");
          $( "#btnLogout").addClass("hide");
     }  else {
         $( "#login" ).addClass("hide");
+        $( "#myhome" ).removeClass("hide");
         $( "#btnLogout").removeClass("hide");
         carregarItens_MyHome();
     }

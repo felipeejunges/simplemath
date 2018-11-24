@@ -5,6 +5,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +33,16 @@ public class Quiz implements Serializable {
     @JoinColumn(name="user_id")
     private Usuario user;
 
+    public Timestamp getData() {
+        return data;
+    }
+
+    public void setData(Timestamp data) {
+        this.data = data;
+    }
+
+    private Timestamp data;
+
     public Quiz() {
     }
 
@@ -39,9 +50,10 @@ public class Quiz implements Serializable {
         this.id = id;
     }
 
-    public Quiz(boolean unactive, Usuario user) {
+    public Quiz(boolean unactive, Usuario user, Timestamp data) {
         this.unactive = unactive;
         this.user = user;
+        this.data = data;
     }
 
     public int getId() {

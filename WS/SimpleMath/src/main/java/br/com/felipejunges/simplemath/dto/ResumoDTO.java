@@ -4,6 +4,7 @@ import br.com.felipejunges.simplemath.domain.Answer;
 import br.com.felipejunges.simplemath.domain.Quiz;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 public class ResumoDTO implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -11,14 +12,16 @@ public class ResumoDTO implements Serializable {
     private long tempo;
     private int erros;
     private int acertos;
+    private Timestamp data;
 
     public ResumoDTO() {
     }
 
-    public ResumoDTO(long tempo, int erros, int acertos) {
+    public ResumoDTO(long tempo, int erros, int acertos, Timestamp data) {
         this.tempo = tempo;
         this.erros = erros;
         this.acertos = acertos;
+        this.data = data;
     }
 
     public ResumoDTO(Quiz quiz) {
@@ -27,6 +30,7 @@ public class ResumoDTO implements Serializable {
         this.acertos = 0;
         for (Answer answer: quiz.getAnswers()) {
             tempo += answer.getTime();
+            this.data = quiz.getData();
             if(answer.getAlternative().isCorrect()) acertos += 1;
             else erros += 1;
         }

@@ -13,6 +13,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -35,9 +36,10 @@ public class QuizService {
 		List<Answer> answers = new ArrayList<>();
 		for(Answer answer : quiz.getAnswers()) {
 			answer.setQuiz(quiz);
+			answers.add(answer);
 		}
-		answerRepo.saveAll(answers);
 		quiz.setAnswers(answers);
+		answerRepo.saveAll(answers);
 		repo.save(quiz);
 		return quiz;
 	}
@@ -47,7 +49,7 @@ public class QuizService {
 	}
 
 	public Quiz newQuiz(int usuarioID) {
-		Quiz obj = new Quiz(false, usuarioService.find(usuarioID));
+		Quiz obj = new Quiz(false, usuarioService.find(usuarioID), new Timestamp(System.currentTimeMillis()));
 		obj.setQuestions(questionService.findQuestions());
 		repo.save(obj);
 		return obj;

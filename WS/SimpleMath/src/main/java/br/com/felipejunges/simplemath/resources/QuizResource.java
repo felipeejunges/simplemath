@@ -37,9 +37,8 @@ public class QuizResource {
 		return ResponseEntity.ok().body(obj);
 	}
 
-    @RequestMapping(value="/save/{id}", method=RequestMethod.PUT)
-	public ResponseEntity<?> save(@PathVariable int id, @RequestBody Quiz quiz) {
-	    quiz.setId(id);
+    @RequestMapping(value="/save", method=RequestMethod.POST)
+	public ResponseEntity<?> save(@RequestBody Quiz quiz) {
 		service.save(quiz);
 
 		return ResponseEntity.ok().body(new Quiz(quiz.getId()));
@@ -48,10 +47,10 @@ public class QuizResource {
 
     @RequestMapping(value="/resumo/{usuarioID}", method=RequestMethod.GET)
     public ResponseEntity<?> resumo(@PathVariable int usuarioID) {
-        Usuario usuario = usuarioService.find(usuarioID);
+        List<Quiz> quizzes = service.findByUser(new Usuario(usuarioID));
         List<ResumoDTO> dto = new ArrayList<>();
         for (Quiz quiz :
-                usuario.getQuizzes()) {
+                quizzes) {
             dto.add(new ResumoDTO(quiz));
         }
         return ResponseEntity.ok().body(dto);
