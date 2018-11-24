@@ -22,6 +22,10 @@ function cadastro() {
             });
         },
         success: function (retorno) {
+            $('#nome').val("");
+            $('#email').val("");
+            $('#telefone').val("");
+            $('#password').val("");
             swal({
                 type: 'success',
                 title: 'Cadastro realizado com sucesso!',

@@ -21,6 +21,8 @@ function login() {
             });
         },
         success: function (retorno) {
+            $('#emailLogin').val("");
+            $('#passwordLogin').val("");
             changeSection("login", "myhome");
             loginLocalStorage(retorno);
             carregarItens_MyHome();
