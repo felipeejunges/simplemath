@@ -7,7 +7,6 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 
 @Entity
@@ -15,18 +14,13 @@ public class Quiz implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(generator="UUID")
-    @GenericGenerator(
-            name="UUID",
-            strategy = "org.hibernate.id.UUIDGenerator"
-    )
-    private UUID id;
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private int id;
     private boolean unactive;
 
     @OneToMany(mappedBy="quiz")
     private List<Answer> answers = new ArrayList<>();
 
-    @JsonIgnore
     @ManyToMany
     @JoinTable(name="QUIZ_QUESTION",
             joinColumns= @JoinColumn(name="quiz_id"),
@@ -41,7 +35,7 @@ public class Quiz implements Serializable {
     public Quiz() {
     }
 
-    public Quiz(UUID id) {
+    public Quiz(int id) {
         this.id = id;
     }
 
@@ -50,11 +44,11 @@ public class Quiz implements Serializable {
         this.user = user;
     }
 
-    public UUID getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(int id) {
         this.id = id;
     }
 

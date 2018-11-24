@@ -7,7 +7,6 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 
 @Entity
@@ -15,12 +14,8 @@ public class Alternative implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(generator="UUID")
-    @GenericGenerator(
-            name="UUID",
-            strategy = "org.hibernate.id.UUIDGenerator"
-    )
-    private UUID id;
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private int id;
     private String answer;
     private boolean correct;
     private boolean unactive;
@@ -37,7 +32,7 @@ public class Alternative implements Serializable {
     public Alternative() {
     }
 
-    public Alternative(UUID id) {
+    public Alternative(int id) {
         this.id = id;
     }
 
@@ -48,17 +43,17 @@ public class Alternative implements Serializable {
         this.question = question;
     }
 
-    public Alternative(UUID id, String answer, boolean correct) {
+    public Alternative(int id, String answer, boolean correct) {
         this.id = id;
         this.answer = answer;
         this.correct = correct;
     }
 
-    public UUID getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(int id) {
         this.id = id;
     }
 

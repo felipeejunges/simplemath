@@ -11,9 +11,9 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 public class QuestionService {
@@ -24,7 +24,7 @@ public class QuestionService {
 	@Autowired
     private AlternativeService alternativeService;
 	
-	public Question find(UUID id) {
+	public Question find(int id) {
 		Optional<Question> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Question.class.getName()));
@@ -35,8 +35,12 @@ public class QuestionService {
 	}
 
 	public List<Question> findQuestions() {
-		//return repo.findAllOrderByRand();
-		return repo.randomQuestion();
+		List<Question> questoes = repo.randomQuestion();
+		for (Question questao :
+				questoes) {
+			questao.getAlternatives().addAll(alternativeService.findByQuestion(questao));
+		}
+		return questoes;
 	}
 	
 	public Page<Question> findPage(int page, int linesPerPage, String orderBy, String direction) {
@@ -46,7 +50,7 @@ public class QuestionService {
 
     @Transactional
     public Question insert(Question obj) {
-        obj.setId(null);
+        obj.setId(0);
         return repo.save(obj);
     }
 

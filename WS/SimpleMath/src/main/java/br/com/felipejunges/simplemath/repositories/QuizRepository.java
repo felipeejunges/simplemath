@@ -1,13 +1,15 @@
 package br.com.felipejunges.simplemath.repositories;
 
 import br.com.felipejunges.simplemath.domain.Quiz;
+import br.com.felipejunges.simplemath.domain.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.UUID;
+import java.util.List;
 
 
 @Repository
-public interface QuizRepository extends JpaRepository<Quiz, UUID> {
+public interface QuizRepository extends JpaRepository<Quiz, Integer> {
 
+    List<Quiz> findByUser(Usuario usuario);
 }

@@ -3,15 +3,14 @@ package br.com.felipejunges.simplemath.dto;
 import br.com.felipejunges.simplemath.domain.Answer;
 
 import java.io.Serializable;
-import java.util.UUID;
 
 public class AnswerDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private UUID id;
+    private int id;
     private boolean unactive;
     private long time;
-    private UUID alternativeId;
+    private int alternativeId;
 
     public AnswerDTO() {
 
@@ -24,11 +23,11 @@ public class AnswerDTO implements Serializable {
         this.alternativeId = answer.getAlternative().getId();
     }
 
-    public UUID getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -48,11 +47,11 @@ public class AnswerDTO implements Serializable {
         this.time = time;
     }
 
-    public UUID getAlternativeId() {
+    public int getAlternativeId() {
         return alternativeId;
     }
 
-    public void setAlternativeId(UUID alternativeId) {
+    public void setAlternativeId(int alternativeId) {
         this.alternativeId = alternativeId;
     }
 }

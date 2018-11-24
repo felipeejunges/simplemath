@@ -1,6 +1,7 @@
 package br.com.felipejunges.simplemath.services;
 
 import br.com.felipejunges.simplemath.domain.Alternative;
+import br.com.felipejunges.simplemath.domain.Question;
 import br.com.felipejunges.simplemath.dto.AlternativeDTO;
 import br.com.felipejunges.simplemath.repositories.AlternativeRepository;
 import br.com.felipejunges.simplemath.services.exceptions.ObjectNotFoundException;
@@ -14,7 +15,6 @@ import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 public class AlternativeService {
@@ -22,7 +22,7 @@ public class AlternativeService {
 	@Autowired
 	private AlternativeRepository repo;
 
-	public Alternative find(UUID id) {
+	public Alternative find(int id) {
 		Optional<Alternative> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Alternative.class.getName()));
@@ -39,7 +39,7 @@ public class AlternativeService {
 
     @Transactional
     public Alternative insert(Alternative obj) {
-        obj.setId(null);
+        obj.setId(0);
         return repo.save(obj);
     }
 
@@ -49,10 +49,13 @@ public class AlternativeService {
 
 	public  List<Alternative>  getAlternativesFromDTO(List<AlternativeDTO> alternativesDTO) {
         List<Alternative> alternatives = new ArrayList<>();
-        for (AlternativeDTO alternativeDTO: alternativesDTO) {
-            alternatives.add(fromDTO(alternativeDTO));
-        }
+//        for (AlternativeDTO alternativeDTO: alternativesDTO) {
+//            alternatives.add(fromDTO(alternativeDTO));
+//        }
         return alternatives;
     }
-	
+
+	public List<Alternative> findByQuestion(Question questao) {
+		return repo.findByQuestion(questao);
+	}
 }

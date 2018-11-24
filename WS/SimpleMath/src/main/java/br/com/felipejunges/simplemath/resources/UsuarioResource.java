@@ -15,7 +15,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RestController
@@ -26,7 +25,7 @@ public class UsuarioResource {
 	private UsuarioService service;
 
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<?> find(@PathVariable UUID id) {
+	public ResponseEntity<?> find(@PathVariable int id) {
 	    System.out.print(id);
 		Usuario obj = service.find(id);
 		return ResponseEntity.ok().body(obj);
@@ -53,7 +52,7 @@ public class UsuarioResource {
 
     @RequestMapping(value="/{id}", method=RequestMethod.PUT)
     public ResponseEntity<Void> update(@Valid @RequestBody UsuarioDTO objDto,
-                                       @PathVariable UUID id) {
+                                       @PathVariable int id) {
         Usuario obj = service.fromDTO(objDto);
         obj.setId(id);
         obj = service.update(obj);

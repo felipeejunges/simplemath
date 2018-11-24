@@ -3,12 +3,11 @@ package br.com.felipejunges.simplemath.dto;
 import br.com.felipejunges.simplemath.domain.Usuario;
 
 import java.io.Serializable;
-import java.util.UUID;
 
 public class UsuarioDTO  implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private UUID id;
+    private int id;
     private String name;
     private String email;
     private String celphoneNumber;
@@ -23,11 +22,11 @@ public class UsuarioDTO  implements Serializable {
         this.email = obj.getEmail();
     }
 
-    public UUID getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(int id) {
         this.id = id;
     }
 

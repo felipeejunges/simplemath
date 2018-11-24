@@ -14,12 +14,8 @@ public class Usuario implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(generator="UUID")
-    @GenericGenerator(
-            name="UUID",
-            strategy = "org.hibernate.id.UUIDGenerator"
-    )
-    private UUID id;
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private int id;
     private String name;
     @Column(unique=true)
     private String email;
@@ -47,7 +43,7 @@ public class Usuario implements Serializable {
         this.password = password;
     }
 
-    public Usuario(UUID id, String name, String email, String celphoneNumber, String password) {
+    public Usuario(int id, String name, String email, String celphoneNumber, String password) {
         super();
         this.id = id;
         this.name = name;
@@ -62,11 +58,11 @@ public class Usuario implements Serializable {
         this.password = password;
     }
 
-    public UUID getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(int id) {
         this.id = id;
     }
 

@@ -7,14 +7,14 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.UUID;
 
 
 @Repository
-public interface QuestionRepository extends JpaRepository<Question, UUID> {
+public interface QuestionRepository extends JpaRepository<Question, Integer> {
 
     @Transactional(readOnly=true)
-    @Query("SELECT q FROM Question q ORDER BY RAND() LIMIT 10")
+    @Query(value="SELECT * FROM Question ORDER BY RAND() LIMIT 10", nativeQuery = true)
+    //@Query("SELECT q FROM Question q order by function('RAND')")
     List<Question> randomQuestion();
 
 //    @Transactional(readOnly=true)

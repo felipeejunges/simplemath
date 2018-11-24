@@ -5,7 +5,6 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.UUID;
 
 
 @Entity
@@ -13,12 +12,8 @@ public class Answer implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(generator="UUID")
-    @GenericGenerator(
-            name="UUID",
-            strategy = "org.hibernate.id.UUIDGenerator"
-    )
-    private UUID id;
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private int id;
     private boolean unactive;
     private long time;
 
@@ -37,14 +32,14 @@ public class Answer implements Serializable {
     public Answer() {
     }
 
-    public Answer(UUID id, long time, Alternative alternative) {
+    public Answer(int id, long time, Alternative alternative) {
         this.id = id;
         this.time = time;
         this.alternative = alternative;
     }
 
 
-    public Answer(UUID id, long time, Alternative alternative, Quiz quiz) {
+    public Answer(int id, long time, Alternative alternative, Quiz quiz) {
         this.id = id;
         this.time = time;
         this.alternative = alternative;
@@ -58,11 +53,11 @@ public class Answer implements Serializable {
         this.quiz = quiz;
     }
 
-    public UUID getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(int id) {
         this.id = id;
     }
 

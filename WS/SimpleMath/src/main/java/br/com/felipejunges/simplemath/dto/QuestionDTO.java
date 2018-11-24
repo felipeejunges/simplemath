@@ -6,12 +6,11 @@ import br.com.felipejunges.simplemath.domain.Question;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 public class QuestionDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private UUID id;
+    private int id;
     private String description;
     private boolean unactive;
     private long maxtime;
@@ -29,11 +28,11 @@ public class QuestionDTO implements Serializable {
         getAlternativesToAlternativeDto(question.getAlternatives());
     }
 
-    public UUID getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(int id) {
         this.id = id;
     }
 

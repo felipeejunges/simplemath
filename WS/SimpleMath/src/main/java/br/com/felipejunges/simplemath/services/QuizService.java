@@ -16,7 +16,6 @@ import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 public class QuizService {
@@ -43,13 +42,18 @@ public class QuizService {
 		return quiz;
 	}
 
-	public Quiz newQuiz(UUID usuarioID) {
+	public List<Quiz> findByUser(Usuario usuario) {
+		return repo.findByUser(usuario);
+	}
+
+	public Quiz newQuiz(int usuarioID) {
 		Quiz obj = new Quiz(false, usuarioService.find(usuarioID));
 		obj.setQuestions(questionService.findQuestions());
+		repo.save(obj);
 		return obj;
 	}
 	
-	public Quiz find(UUID id) {
+	public Quiz find(int id) {
 		Optional<Quiz> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Quiz.class.getName()));
@@ -66,7 +70,7 @@ public class QuizService {
 
 	@Transactional
 	public Quiz insert(Quiz obj) {
-		obj.setId(null);
+		obj.setId(0);
 		return repo.save(obj);
 	}
 	

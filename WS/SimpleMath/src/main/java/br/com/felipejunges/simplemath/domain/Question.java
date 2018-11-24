@@ -1,13 +1,11 @@
 package br.com.felipejunges.simplemath.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 
 @Entity
@@ -15,17 +13,13 @@ public class Question implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(generator="UUID")
-    @GenericGenerator(
-            name="UUID",
-            strategy = "org.hibernate.id.UUIDGenerator"
-    )
-    private UUID id;
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private int id;
+    @Column(columnDefinition="TEXT")
     private String description;
     private boolean unactive;
     private long maxtime;
 
-    @JsonIgnore
     @OneToMany(mappedBy="question")
     private List<Alternative> alternatives = new ArrayList<>();
 
@@ -42,18 +36,18 @@ public class Question implements Serializable {
         this.maxtime = maxtime;
     }
 
-    public Question(UUID id, String description, long maxtime, List<Alternative> alternatives) {
+    public Question(int id, String description, long maxtime, List<Alternative> alternatives) {
         this.id = id;
         this.description = description;
         this.maxtime = maxtime;
         this.alternatives = alternatives;
     }
 
-    public UUID getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(int id) {
         this.id = id;
     }
 

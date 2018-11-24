@@ -16,7 +16,6 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 public class UsuarioService {
@@ -27,7 +26,7 @@ public class UsuarioService {
     @Autowired
     private BCryptPasswordEncoder pe;
 
-    public Usuario find(UUID id) {
+    public Usuario find(int id) {
         Optional<Usuario> obj = repo.findById(id);
         return obj.orElseThrow(() -> new ObjectNotFoundException(
                 "Objeto não encontrado! Id: " + id + ", Tipo: " + Usuario.class.getName()));
@@ -49,7 +48,7 @@ public class UsuarioService {
 
     @Transactional
     public Usuario insert(Usuario obj) {
-        obj.setId(null);
+        obj.setId(0);
         obj = repo.save(obj);
         return obj;
     }
@@ -85,7 +84,7 @@ public class UsuarioService {
     }
 
     public Usuario fromDTO(UsuarioNewDTO objDto) {
-        return new Usuario(null, objDto.getName(), objDto.getEmail(),
+        return new Usuario(0, objDto.getName(), objDto.getEmail(),
                 objDto.getCelphoneNumber(), objDto.getPassword());
 //        return new Usuario(null, objDto.getName(), objDto.getEmail(),
 //                objDto.getCelphoneNumber(), pe.encode(objDto.getPassword()));

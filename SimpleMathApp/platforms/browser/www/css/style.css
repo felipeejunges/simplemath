@@ -1,0 +1,134 @@
+
+.pade {
+    margin-left: 25%;
+}
+
+
+input:not([type]):focus:not([readonly]) + label,
+input[type=text]:not(.browser-default):focus:not([readonly]) + label,
+input[type=password]:not(.browser-default):focus:not([readonly]) + label,
+input[type=email]:not(.browser-default):focus:not([readonly]) + label,
+input[type=url]:not(.browser-default):focus:not([readonly]) + label,
+input[type=time]:not(.browser-default):focus:not([readonly]) + label,
+input[type=date]:not(.browser-default):focus:not([readonly]) + label,
+input[type=datetime]:not(.browser-default):focus:not([readonly]) + label,
+input[type=datetime-local]:not(.browser-default):focus:not([readonly]) + label,
+input[type=tel]:not(.browser-default):focus:not([readonly]) + label,
+input[type=number]:not(.browser-default):focus:not([readonly]) + label,
+input[type=search]:not(.browser-default):focus:not([readonly]) + label,
+textarea.materialize-textarea:focus:not([readonly]) + label {
+    color: #FFFFFF;
+}
+
+input:not([type]):focus:not([readonly]),
+input[type=text]:not(.browser-default):focus:not([readonly]),
+input[type=password]:not(.browser-default):focus:not([readonly]),
+input[type=email]:not(.browser-default):focus:not([readonly]),
+input[type=url]:not(.browser-default):focus:not([readonly]),
+input[type=time]:not(.browser-default):focus:not([readonly]),
+input[type=date]:not(.browser-default):focus:not([readonly]),
+input[type=datetime]:not(.browser-default):focus:not([readonly]),
+input[type=datetime-local]:not(.browser-default):focus:not([readonly]),
+input[type=tel]:not(.browser-default):focus:not([readonly]),
+input[type=number]:not(.browser-default):focus:not([readonly]),
+input[type=search]:not(.browser-default):focus:not([readonly]),
+textarea.materialize-textarea:focus:not([readonly]) {
+    border-bottom: 1px solid #FFFFFF;
+    -webkit-box-shadow: 0 1px 0 0 #FFFFFF;
+    box-shadow: 0 1px 0 0 #FFFFFF;
+}
+
+.dropdown-content li > a, .dropdown-content li > span {
+    color: #FFFFFF;
+}
+
+.notification-badge {
+    font-family: "Roboto", sans-serif;
+    position: relative;
+    right: 5px;
+    top: -20px;
+    color: #ffffff;
+    font-size: small;
+    background-color: #00bcd4;
+    margin: 0 -.8em;
+    border-radius: 50%;
+    padding: 1px 3px;
+}
+
+.divider {
+    height: 1px;
+    overflow: hidden;
+    background-color: #e0e0e0;
+}
+
+.esquerda {
+    margin-left: -10px;
+    margin-right: 1rem;
+    text-shadow: #000 -1px -1px;
+    color: #000;
+}
+
+.background {
+    -webkit-filter: blur(1.5px);
+    -moz-filter: blur(1.5px);
+    -o-filter: blur(1.5px);
+    -ms-filter: blur(1.5px);
+    filter: sepia(40%);
+}
+
+.picker__date-display {
+    background-color: #FFFFFF;
+}
+
+.picker__close, .picker__today {
+    color: #FFFFFF;
+}
+
+.picker__day.picker__day--today {
+    color: #FFFFFF;
+}
+
+.clockpicker-tick:hover {
+    background: #FFFFFF !important;
+}
+
+.clockpicker-canvas line {
+    stroke: #FFFFFF !important;
+}
+
+.clockpicker-canvas-bearing {
+    fill: #FFFFFF !important;
+}
+
+.clockpicker-canvas-bg {
+    fill: #FFFFFF !important;
+}
+
+.picker__day--selected, .picker__day--selected:hover, .picker--focused .picker__day--selected {
+    background-color: #FFFFFF;
+}
+
+[type="radio"]:checked + label:after, [type="radio"].with-gap:checked + label:before, [type="radio"].with-gap:checked + label:after {
+    border: 2px solid #FFFFFF;
+}
+
+[type="radio"]:checked + label:after, [type="radio"].with-gap:checked + label:after {
+    background-color: #FFFFFF;
+}
+
+.title-view {
+    font-size: 2.4rem;
+    font-weight: 900;
+    display: block;
+    margin-bottom: -1rem;
+    text-transform: uppercase;
+}
+
+.description-view {
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.alternative {
+    font-size: 1.5rem;
+}

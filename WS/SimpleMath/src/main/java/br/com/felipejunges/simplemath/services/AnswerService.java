@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 public class AnswerService {
@@ -22,7 +21,7 @@ public class AnswerService {
 	@Autowired
 	private AnswerRepository repo;
 	
-	public Answer find(UUID id) {
+	public Answer find(int id) {
 		Optional<Answer> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Answer.class.getName()));
@@ -39,7 +38,7 @@ public class AnswerService {
 
 	@Transactional
 	public Answer insert(Answer obj) {
-		obj.setId(null);
+		obj.setId(0);
 		return repo.save(obj);
 	}
 

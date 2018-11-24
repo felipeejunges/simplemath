@@ -3,12 +3,11 @@ package br.com.felipejunges.simplemath.dto;
 import br.com.felipejunges.simplemath.domain.Alternative;
 
 import java.io.Serializable;
-import java.util.UUID;
 
 public class AlternativeDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private UUID id;
+    private int id;
     private String answer;
     private boolean correct;
     private boolean unactive;
@@ -24,11 +23,11 @@ public class AlternativeDTO implements Serializable {
         this.unactive = alternative.isUnactive();
     }
 
-    public UUID getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(int id) {
         this.id = id;
     }
 

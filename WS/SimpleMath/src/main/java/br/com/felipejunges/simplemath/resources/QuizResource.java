@@ -9,14 +9,10 @@ import br.com.felipejunges.simplemath.services.QuizService;
 import br.com.felipejunges.simplemath.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequestMapping(value="/quiz")
@@ -29,28 +25,29 @@ public class QuizResource {
     private UsuarioService usuarioService;
 
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<?> find(@PathVariable UUID id) {
+	public ResponseEntity<?> find(@PathVariable int id) {
 	    System.out.print(id);
 		Quiz obj = service.find(id);
 		return ResponseEntity.ok().body(obj);
 	}
 
-    @RequestMapping(value="/new/{id}", method=RequestMethod.GET)
-	public ResponseEntity<?> newQuiz(@PathVariable UUID usuarioID) {
+    @RequestMapping(value="/new/{usuarioID}", method=RequestMethod.GET)
+	public ResponseEntity<?> newQuiz(@PathVariable int usuarioID) {
 		Quiz obj = service.newQuiz(usuarioID);
 		return ResponseEntity.ok().body(obj);
 	}
 
-    @RequestMapping(value="/save", method=RequestMethod.PUT)
-	public ResponseEntity<?> save(Quiz quiz) {
+    @RequestMapping(value="/save/{id}", method=RequestMethod.PUT)
+	public ResponseEntity<?> save(@PathVariable int id, @RequestBody Quiz quiz) {
+	    quiz.setId(id);
 		service.save(quiz);
 
 		return ResponseEntity.ok().body(new Quiz(quiz.getId()));
 	}
 
 
-    @RequestMapping(value="/resumo/{id}", method=RequestMethod.GET)
-    public ResponseEntity<?> resumo(@PathVariable UUID usuarioID) {
+    @RequestMapping(value="/resumo/{usuarioID}", method=RequestMethod.GET)
+    public ResponseEntity<?> resumo(@PathVariable int usuarioID) {
         Usuario usuario = usuarioService.find(usuarioID);
         List<ResumoDTO> dto = new ArrayList<>();
         for (Quiz quiz :
@@ -61,7 +58,7 @@ public class QuizResource {
     }
 
     @RequestMapping(value="/final/{id}", method=RequestMethod.GET)
-    public ResponseEntity<?> finalResume(@PathVariable UUID id) {
+    public ResponseEntity<?> finalResume(@PathVariable int id) {
         Quiz quiz = service.find(id);
         long tempoEsperado = 0;
         long tempoTotal = 0;
