@@ -35,7 +35,8 @@ public class QuestionService {
 	}
 
 	public List<Question> findQuestions() {
-		return repo.findAllOrderByRand();
+		//return repo.findAllOrderByRand();
+		return repo.randomQuestion();
 	}
 	
 	public Page<Question> findPage(int page, int linesPerPage, String orderBy, String direction) {

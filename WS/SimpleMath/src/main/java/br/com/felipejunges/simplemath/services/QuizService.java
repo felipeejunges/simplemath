@@ -1,6 +1,9 @@
 package br.com.felipejunges.simplemath.services;
 
+import br.com.felipejunges.simplemath.domain.Answer;
 import br.com.felipejunges.simplemath.domain.Quiz;
+import br.com.felipejunges.simplemath.domain.Usuario;
+import br.com.felipejunges.simplemath.repositories.AnswerRepository;
 import br.com.felipejunges.simplemath.repositories.QuizRepository;
 import br.com.felipejunges.simplemath.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +13,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -19,27 +23,30 @@ public class QuizService {
 
 	@Autowired
 	private QuizRepository repo;
+	@Autowired
 	private AnswerRepository answerRepo;
+	@Autowired
 	private UsuarioService usuarioService;
+	@Autowired
 	private AlternativeService alternativeService;
-	private AlternativeService questionService;
+	@Autowired
+	private QuestionService questionService;
 
 	public Quiz save(Quiz quiz) {
 		List<Answer> answers = new ArrayList<>();
-		for(Answer answer : quiz.answers) {
-			answer.setUsuario(quiz.getUsuario());
+		for(Answer answer : quiz.getAnswers()) {
 			answer.setQuiz(quiz);
 		}
-		alternativeRepo.saveAll(answers);
-		quiz.answers = answers;
+		answerRepo.saveAll(answers);
+		quiz.setAnswers(answers);
 		repo.save(quiz);
 		return quiz;
 	}
 
-	public Quiz new(UUID usuarioID) {
-		Quiz obj = new Quiz(false, usuarioID);
+	public Quiz newQuiz(UUID usuarioID) {
+		Quiz obj = new Quiz(false, usuarioService.find(usuarioID));
 		obj.setQuestions(questionService.findQuestions());
-		return quiz;
+		return obj;
 	}
 	
 	public Quiz find(UUID id) {

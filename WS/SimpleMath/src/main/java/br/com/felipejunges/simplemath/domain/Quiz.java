@@ -41,6 +41,10 @@ public class Quiz implements Serializable {
     public Quiz() {
     }
 
+    public Quiz(UUID id) {
+        this.id = id;
+    }
+
     public Quiz(boolean unactive, Usuario user) {
         this.unactive = unactive;
         this.user = user;
