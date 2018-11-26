@@ -7,6 +7,7 @@ function cadastroQuestao() {
         c: $('#alternativeC').val(),
         d: $('#alternativeD').val(),
         e: $('#alternativeE').val(),
+        maxtime: $('#maxtimeCadastro').val(),
         correct: $('#selectCorrect').val()
     };
     $.ajax({
@@ -32,12 +33,13 @@ function cadastroQuestao() {
             $('#alternativeD').val("");
             $('#alternativeE').val("");
             $('#selectCorrect').val("");
+            $('#maxtimeCadastro').val("");
             swal({
                 type: 'success',
                 title: 'Cadastro realizado com sucesso!',
                 timer: 1500
             });
-            changeSection("login", "cadastro");
+            changeSection("login", "cadastroQuestao");
         }
     });
 }
