@@ -215,7 +215,7 @@
         <section id="cadastroQuestao">
             <div class="container">
                 <div class="row center-align white-text">
-                    <h4>DESAFIO ACEITO</h4>
+                    <h4>Nova Questão</h4>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
@@ -271,7 +271,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <button type="button" onclick="cadastroQuestao()" class="btn white blue-text darken-3 col s12 waves-effect">Registrar</button>
+                    <button type="button" onclick="cadastroQuestao()" class="btn white blue-text darken-3 col s12 waves-effect">Salvar</button>
                 </div>
                 <div class="row right-align">
                     <a href="javascript:changeSection('cadastroQuestao', 'login')" class="white-text">Entrar</a>
@@ -304,6 +304,10 @@
             $("#" + sectionFechar).addClass("hide");
             $("#" + sectionAbrir).removeClass("hide");
         }
+
+        $(document).ready(function(){
+            $('select').formSelect();
+        });
 
     </script>
 </body>
