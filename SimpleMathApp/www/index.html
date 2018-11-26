@@ -48,6 +48,9 @@
                 <div class="row">
                     <button type="button" onclick="login()" class="btn white blue-text darken-3 col s12 waves-effect">Entrar</button>
                 </div>
+                <div class="row left-align">
+                    <a href="javascript:changeSection('login', 'cadastroQuestao')" class="white-text">Nova Questão</a>
+                </div>
                 <div class="row right-align">
                     <a href="javascript:changeSection('login', 'cadastro')" class="white-text">Cadastrar-se</a>
                 </div>
@@ -206,8 +209,69 @@
                 </div>
             </div>
         </section>
-    </div>
 
+
+        <section id="cadastroQuestao">
+            <div class="container">
+                <div class="row center-align white-text">
+                    <h4>DESAFIO ACEITO</h4>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="questionDescription" type="text" class="validate">
+                        <label for="questionDescription">Questão</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="alternativeA" type="text" class="validate">
+                        <label for="alternativeA">A</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="alternativeB" type="text" class="validate">
+                        <label for="alternativeB">B</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="alternativeC" type="text" class="validate">
+                        <label for="alternativeC">C</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="alternativeD" type="text" class="validate">
+                        <label for="alternativeD">D</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="alternativeE" type="text" class="validate">
+                        <label for="alternativeE">E</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <select id="selectCorrect">
+                        <option value="1" selected>Alternativa A</option>
+                        <option value="2">Alternativa B</option>
+                        <option value="3">Alternativa C</option>
+                        <option value="4">Alternativa D</option>
+                        <option value="5">Alternativa E</option>
+                      </select>
+                      <label>Materialize Select</label>
+                </div>
+                <div class="row">
+                    <button type="button" onclick="cadastroQuestao()" class="btn white blue-text darken-3 col s12 waves-effect">Registrar</button>
+                </div>
+                <div class="row right-align">
+                    <a href="javascript:changeSection('cadastroQuestao', 'login')" class="white-text">Entrar</a>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- https://codepen.io/_Billy_Brown/pen/dbJeh -->
     <script type="text/javascript" src="js/jquery-3.3.1.slim.min.js"></script>
     <script type="text/javascript" src="js/materialize.min.js"></script>
     <script type="text/javascript" src="js/sweetalert2.all.min.js"></script>
@@ -219,6 +283,7 @@
     <script type="text/javascript" src="js/myhome.js"></script>
     <script type="text/javascript" src="js/questao.js"></script>
     <script type="text/javascript" src="js/final.js"></script>
+    <script type="text/javascript" src="js/cadastroQuestao.js"></script>
     <script type="text/javascript">
         app.initialize();
 

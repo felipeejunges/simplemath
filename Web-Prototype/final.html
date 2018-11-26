@@ -90,15 +90,18 @@
             var retorno = [];
             for (i = 0; i < 5; i++) {
                 var obj = {
-                    correto: 1,
+                    correto: i/2,
                     tempo: '01:2' + i
                 }
                 retorno.push(obj);
             }
             var listaResultado = retorno;
             $.each(listaResultado, function (i, resultado) {
-                var item = '<span class="title">' + resultado.correto ? 'Correto' : 'Errado' + '</span>';
-                item += '<p>' + resultado.tempo + '</p>';
+                var item;
+                if(item == 1) item = '<span class="title green-text"><strong>Correta</strong></span>'
+                else item = '<span class="title red-text"><strong>Incorreta</strong></span>'
+                item += '<span class="right-align">' + resultado.tempo + '</span>';
+   
                 var li = '<li class="collection-item">' + item + '</li>';
                 $('ul#collectionResultado').append(li);
                 console.log(li);
