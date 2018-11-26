@@ -43,6 +43,10 @@ public class AlternativeService {
         return repo.save(obj);
     }
 
+    public List<Alternative> insert(List<Alternative> lista) {
+        return repo.saveAll(lista);
+    }
+
 	public Alternative fromDTO(AlternativeDTO dto) {
 		return new Alternative(dto.getId(), dto.getAnswer(), dto.isCorrect());
 	}

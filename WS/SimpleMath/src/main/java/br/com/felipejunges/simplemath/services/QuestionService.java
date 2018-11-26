@@ -42,6 +42,13 @@ public class QuestionService {
 		}
 		return questoes;
 	}
+
+	public Question insert(QuestionNewDTO dto) {
+		Question q = fromDTO(dto);
+		questionRepository.save(q1);
+		alternativeService.saveAll(q.getAlternatives());
+		return q;
+	}
 	
 	public Page<Question> findPage(int page, int linesPerPage, String orderBy, String direction) {
 		PageRequest pageRequest = PageRequest.of(page,  linesPerPage, Direction.valueOf(direction), orderBy);
@@ -57,6 +64,16 @@ public class QuestionService {
     public Question fromDTO(QuestionDTO dto) {
 	    return new Question(dto.getId(), dto.getDescription(), dto.getMaxtime(),
                 alternativeService.getAlternativesFromDTO(dto.getAlternativeDTOs()));
+    }
+
+	public Question fromDTO(QuestionNewDTO dto) {
+		Question q = new Question(dto.getDescription(), false, dto.getMaxtime());
+		q.getAlternatives().add(dto.getA(), dto.getCorrect() == 1, false, q);
+		q.getAlternatives().add(dto.getB(), dto.getCorrect() == 2, false, q);
+		q.getAlternatives().add(dto.getC(), dto.getCorrect() == 3, false, q);
+		q.getAlternatives().add(dto.getD(), dto.getCorrect() == 4, false, q);
+		q.getAlternatives().add(dto.getE(), dto.getCorrect() == 5, false, q);
+		return q;
     }
 
 
