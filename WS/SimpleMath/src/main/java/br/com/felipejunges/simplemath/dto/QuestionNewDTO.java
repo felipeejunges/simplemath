@@ -24,6 +24,8 @@ public class UsuarioNewDTO implements Serializable {
     private String e;
     @NotEmpty(message="Preenchimento obrigatório")
     private int correct;
+    @NotEmpty(message="Preenchimento obrigatório")
+    private long maxtime;
     
 
     public UsuarioNewDTO(){
@@ -43,6 +45,7 @@ public class UsuarioNewDTO implements Serializable {
                 break;
             }
         }
+        this.maxtime = question.getMaxtime();
     }
 
 
