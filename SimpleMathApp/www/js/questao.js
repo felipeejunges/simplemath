@@ -2,6 +2,7 @@ function novoDesafio() {
     quiz = null;
     answers = [];
     $("#respondidos").text("0");
+    totalTempo.start();
     var url = baseUrl + "/quiz/new/" + getValor("id")
     $.ajax({
         type: "GET",
@@ -32,7 +33,9 @@ function getQuestion(i) {
     for(i = 0; i < 5; i ++) {
         pergunta += forEachAlternative(questionObj.alternatives[i].answer, i);
     }
-    $("#pQuestao").text(pergunta) ;
+    $("#pQuestao").text(pergunta);
+    mediaTempo.clear();
+    mediaTempo.start();
 }
 function forEachAlternative(item, index) {
     var opcao = "a) "
@@ -48,15 +51,21 @@ function answerQuestion(i) {
     var questionObj = quiz.questions[qntRespondidos];
     var alternative = questionObj.alternatives[i];
     var answer = {
-        "alternative": alternative
+        "alternative": alternative,
+        "time": timeToMs(mediaTempo.retorno())
     }
     answers.push(answer);
     $("#respondidos").text(answers.length);
     console.log(answer);
     if (qntRespondidos == quiz.questions.length - 1) {
         quiz.answers = answers;
+        totalTempo.stop();
+        mediaTempo.stop();
         salvarResposta();
+        totalTempo.clear();
+        mediaTempo.clear();
     } else {
+        mediaTempo.stop();
         getQuestion(qntRespondidos);
     }
 }

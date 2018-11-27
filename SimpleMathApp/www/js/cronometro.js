@@ -5,7 +5,7 @@ function Stopwatch(idElement) {
     var item = document.getElementById(idElement),
         seconds = 0, minutes = 0, hours = 0,
         t;
-   
+    var timing;
     function add() {
         seconds++;
         if (seconds >= 60) {
@@ -17,7 +17,7 @@ function Stopwatch(idElement) {
             }
         }
 
-        var timing = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
+        timing = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
 
         item.textContent = timing;
 
@@ -26,7 +26,7 @@ function Stopwatch(idElement) {
     function timer() {
         t = setTimeout(add, 1000);
     }
-    timer();
+   // timer();
 
 
     /* Start button */
@@ -44,11 +44,15 @@ function Stopwatch(idElement) {
         item.textContent = "00:00:00";
         seconds = 0; minutes = 0; hours = 0;
     }
+
+    this.retorno = function() {
+        return timing;
+    }
     
 }
 
-var sw = Stopwatch("totalQuiz_Resumo");
-var sw2 = Stopwatch("mediaTempo_Resumo");
+var totalTempo = Stopwatch("totalQuiz_Resumo");
+var mediaTempo = Stopwatch("mediaTempo_Resumo");
  
  function timeToMs(time) {
     var timeParts = time.split(":");
