@@ -20,9 +20,9 @@ function carregarItens_MyHome() {
             $.each(listaResumo, function (i, resumo) {
                 tempo += resumo.tempo;
                 var item = '<span class="title">' + resumo.data + '</span>';
-                item += '<p>' + resumo.tempo + '<br>';
-                item += '<strong><span class="green-text">' + resumo.acertos + '</span>/';
-                item += '<span class="red-text">' + resumo.erros + '</span></strong>' + '</p>';
+                item += '<p><span class="col s6 left-align">Tempo: ' + resumo.tempo + '</span>';
+                item += '<i class="right-align"><strong>Acertos: </strong><span class="green-text">' + resumo.acertos + '</span> / ';
+                item += '<strong>Erros: </strong><span class="red-text">' + resumo.erros + '</span>' + '</i></p>';
                 var li = '<li class="collection-item">' + item + '</li>';
                 $('#collectionResumo').append(li);
             });
@@ -48,9 +48,9 @@ function carregarItensTeste_MyHome() {
     var listaResultado = retorno;
     $.each(listaResultado, function (i, resumo) {
         var item = '<span class="title">' + resumo.data + '</span>';
-        item += '<p>' + resumo.tempo + '<br>';
-        item += '<span>' + resumo.acertos + '/<span>';
-        item += '<span>' + resumo.erros + '</span>' + '</p>';
+        item += '<p><span class="col s6 left-align">Tempo: ' + resumo.tempo + '</span>';
+        item += '<i class="right-align"><strong>Acertos: </strong><span class="green-text">' + resumo.acertos + '</span> / ';
+        item += '<strong>Erros: </strong><span class="red-text">' + resumo.erros + '</span>' + '</i></p>';
         var li = '<li class="collection-item">' + item + '</li>';
         $('#collectionResumo').append(li);
         console.log(li);
