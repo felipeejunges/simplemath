@@ -1,6 +1,3 @@
-// https://jsfiddle.net/pvk6p/7620/
-
-
 function Stopwatch(idElement) {
     var item = document.getElementById(idElement),
         seconds = 0, minutes = 0, hours = 0,
@@ -26,21 +23,18 @@ function Stopwatch(idElement) {
     function timer() {
         t = setTimeout(add, 1000);
     }
-   // timer();
 
+    // Public Functions
 
-    /* Start button */
-    this.start = function start() {
+    this.start = function() {
         timer();
     }
 
-    /* Stop button */
-    this.stop = function stop() {
+    this.stop = function() {
         clearTimeout(t);
     }
 
-    /* Clear button */
-    this.clear = function clear() {
+    this.clear = function() {
         item.textContent = "00:00:00";
         seconds = 0; minutes = 0; hours = 0;
     }
@@ -51,18 +45,16 @@ function Stopwatch(idElement) {
     
 }
 
-var totalTempo = Stopwatch("totalQuiz_Resumo");
-var mediaTempo = Stopwatch("mediaTempo_Resumo");
- 
- function timeToMs(time) {
+/*
+* [ UTILS ]
+*/
+ function timeToMs(time) { // Convert time function in milliseconds. Expect: HH:mm:ss
     var timeParts = time.split(":");
     var ms = (+timeParts[0] * (60000 * 60)) + (+timeParts[1] * 60000) + (+timeParts[2] * 1000);
     return ms
 }
 
-function msToTime(s) {
-
-  // Pad to 2 or 3 digits, default is 2
+function msToTime(s) { // Convert milliseconds function in time. Return: HH:mm:ss
   function pad(n, z) {
     z = z || 2;
     return ('00' + n).slice(-z);

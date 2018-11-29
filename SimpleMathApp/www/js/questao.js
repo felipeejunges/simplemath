@@ -1,3 +1,7 @@
+
+var totalTempo = Stopwatch("totalQuiz_Resumo");
+var mediaTempo = Stopwatch("mediaTempo_Resumo");
+ 
 function novoDesafio() {
     quiz = null;
     answers = [];
