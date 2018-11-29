@@ -219,7 +219,7 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="questionDescription" type="text" class="validate">
+                        <textarea id="questionDescription" class="materialize-textarea validate white-text" data-length="999"></textarea>
                         <label for="questionDescription">Questão</label>
                     </div>
                 </div>
@@ -284,7 +284,6 @@
             </div>
         </section>
     </div>
-    <!-- https://codepen.io/_Billy_Brown/pen/dbJeh -->
     <script type="text/javascript" src="js/jquery-3.3.1.slim.min.js"></script>
     <script type="text/javascript" src="js/materialize.min.js"></script>
     <script type="text/javascript" src="js/sweetalert2.all.min.js"></script>
@@ -314,7 +313,10 @@
 
         $(document).ready(function(){
             $('select').formSelect();
+            $('input#input_text, textarea#questionDescription').characterCounter();
         });
+
+        M.textareaAutoResize($('#questionDescription'));
 
     </script>
 </body>
