@@ -26,9 +26,11 @@ function estaLogado() {
     $( "#cadastro" ).addClass("hide");
     $( "#final" ).addClass("hide");
     $( "#question" ).addClass("hide");
+   // $( "#login" ).addClass("hide");
+    $( "#cadastroQuestao" ).addClass("hide");
     if (window.localStorage.getItem(keyID) == null) {
          $( "#myhome" ).addClass("hide");
-         $( "#login" ).removeClass("hide");
+        $( "#login" ).removeClass("hide");
          $( "#btnLogout").addClass("hide");
     }  else {
         $( "#login" ).addClass("hide");

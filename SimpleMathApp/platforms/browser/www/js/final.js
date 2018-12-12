@@ -21,13 +21,21 @@ function carregarItens_Final() {
             var tempomedio =  retorno.tempoMedio;
             var tempoesperado =  retorno.tempoEsperado;
             var listaResultado = retorno.answer;
+            var j = 0;
             $.each(listaResultado, function (i, resultado) {
-                if(resultado.alternative.correct == true) { acertos += 1 }
+                var resultColor = ' red-text';
+                var result ='Incorreta';
+                if(resultado.alternative.correct == true) { 
+                    acertos += 1;
+                    result = 'Correta';
+                    resultColor = ' green-text';
+                }
                 else { erros += 1 }
-                var item = '<span class="title">' + resultado.alternative.correct + '</span>';
-                item += '<p>' + resultado.time + '</p>';
+                var item = '<strong class="title col s9 left-align ' + resultColor + '">Resposta ' + result + ' da questão ' + j + '</strong>';
+                item += '<span class="right-align">' + resultado.time + '</span>';
                 var li = '<li class="collection-item">' + item + '</li>';
                 $('#collectionResultado').append(li);
+                j++;
             });
             $("#qntAcertos_Final").text(acertos);
             $("#qntErros_Final").text(erros);
@@ -48,16 +56,25 @@ function finalizar() {
 function carregarItensTeste_Final() {
     var retorno = [];
     for (i = 0; i < 5; i++) {
+        var isCorrect = i % 2 ? 0 : 1; 
         var obj = {
-            correto: 1,
+            correto: isCorrect,
             tempo: '01:2' + i
         }
         retorno.push(obj);
     }
     var listaResultado = retorno;
+    var j = 0;
     $.each(listaResultado, function (i, resultado) {
-        var item = '<span class="title">' + resultado.correto ? 'Correto' : 'Errado' + '</span>';
-        item += '<p>' + resultado.tempo + '</p>';
+        j++;
+        var resultColor = ' red-text';
+        var result ='Incorreta';
+        if(resultado.correto == true) {
+            result = 'Correta'
+            resultColor = ' green-text'
+        }
+        var item = '<strong class="title col s9 left-align ' + resultColor + '">Resposta ' + result + ' da questão ' + j + '</strong>';
+        item += '<span class="right-align">' + resultado.tempo + '</span>';
         var li = '<li class="collection-item">' + item + '</li>';
         $('ul#collectionResultado').append(li);
         console.log(li);

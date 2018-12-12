@@ -24,7 +24,7 @@
                 <a href="#" class="brand-logo">SimpleMath</a>
                 <ul class="right">
                     <li><a href="javascript:logoutLocalStorage()" id="btnLogout"><i class="material-icons right">logout</i></a></li>
-                  </ul>
+                </ul>
             </div>
         </nav>
         <section id="login">
@@ -48,8 +48,13 @@
                 <div class="row">
                     <button type="button" onclick="login()" class="btn white blue-text darken-3 col s12 waves-effect">Entrar</button>
                 </div>
-                <div class="row right-align">
-                    <a href="javascript:changeSection('login', 'cadastro')" class="white-text">Cadastrar-se</a>
+                <div class="row left-align">
+                    <div class="col s6 left-align">
+                            <a href="javascript:changeSection('login', 'cadastroQuestao')" class="white-text">Nova Questão</a>
+                    </div>
+                    <div class="col s6 right-align">
+                            <a href="javascript:changeSection('login', 'cadastro')" class="white-text">Cadastrar-se</a>
+                    </div>
                 </div>
             </div>
 
@@ -73,7 +78,7 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="telefone" type="text" class="validate">
+                        <input id="telefone" type="text" class="telefone validate">
                         <label for="telefone">Telefone</label>
                     </div>
                 </div>
@@ -104,7 +109,8 @@
                     </div>
                 </div>
                 <div class="row">
-                    <button type="button" onclick="novoDesafio()" class="btn white blue-text darken-4 col s12 waves-effect"><strong>Quero um desafio</strong></button>
+                    <button type="button" onclick="novoDesafio()" class="btn white blue-text darken-4 col s12 waves-effect"><strong>Quero
+                            um desafio</strong></button>
                 </div>
                 <div class="row">
                     <ul class="collection with-header" id="collectionResumo">
@@ -161,12 +167,12 @@
                 </p>
             </div>
             <div class="row center-align">
-                            
-            <button type="button" onclick="answerQuestion(0)" class="btn white red-text  alternative waves-effect">A</button>
-            <button type="button" onclick="answerQuestion(1)" class="btn white green-text alternative waves-effect">B</button>
-            <button type="button" onclick="answerQuestion(2)" class="btn white brown-text alternative waves-effect">C</button>
-            <button type="button" onclick="answerQuestion(3)" class="btn white orange-text alternative waves-effect">D</button>
-            <button type="button" onclick="answerQuestion(4)" class="btn white purple-text alternative waves-effect">E</button>
+
+                <button type="button" onclick="answerQuestion(0)" class="btn white red-text  alternative waves-effect">A</button>
+                <button type="button" onclick="answerQuestion(1)" class="btn white green-text alternative waves-effect">B</button>
+                <button type="button" onclick="answerQuestion(2)" class="btn white brown-text alternative waves-effect">C</button>
+                <button type="button" onclick="answerQuestion(3)" class="btn white orange-text alternative waves-effect">D</button>
+                <button type="button" onclick="answerQuestion(4)" class="btn white purple-text alternative waves-effect">E</button>
             </div>
 
 
@@ -206,19 +212,95 @@
                 </div>
             </div>
         </section>
-    </div>
 
+
+        <section id="cadastroQuestao">
+            <div class="container">
+                <div class="row center-align white-text">
+                    <h4>Nova Questão</h4>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <textarea id="questionDescription" class="materialize-textarea validate white-text" data-length="999"></textarea>
+                        <label for="questionDescription">Questão</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="prefix white-text">A)</i>
+                        <input id="alternativeA" type="text" class="validate">
+                        <label for="alternativeA">Resposta Aqui</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="prefix white-text">B)</i>
+                        <input id="alternativeB" type="text" class="validate">
+                        <label for="alternativeB">Resposta Aqui</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="prefix white-text">C)</i>
+                        <input id="alternativeC" type="text" class="validate">
+                        <label for="alternativeC">Resposta Aqui</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                            <i class="prefix white-text">D)</i>
+                        <input id="alternativeD" type="text" class="validate">
+                        <label for="alternativeD">Resposta Aqui</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="prefix white-text">E)</i>
+                        <input id="alternativeE" type="text" class="validate">
+                        <label for="alternativeE">Resposta Aqui</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <select id="selectCorrect">
+                            <option value="1" selected>Alternativa A</option>
+                            <option value="2">Alternativa B</option>
+                            <option value="3">Alternativa C</option>
+                            <option value="4">Alternativa D</option>
+                            <option value="5">Alternativa E</option>
+                        </select>
+                        <label for="selectCorrect">Qual é a alternativa correta ?</label>
+                    </div>
+
+                    <div class="input-field col s6">
+                        <input id="maxtimeCadastro" type="number" placeholder="Em milisegundos" class="validate">
+                        <label for="maxtimeCadastro">Tempo Máximo</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <button type="button" onclick="cadastroQuestao()" class="btn white blue-text darken-3 col s12 waves-effect">Salvar</button>
+                </div>
+                <div class="row right-align">
+                    <a href="javascript:changeSection('cadastroQuestao', 'login')" class="white-text">Entrar</a>
+                </div>
+            </div>
+        </section>
+    </div>
     <script type="text/javascript" src="js/jquery-3.3.1.slim.min.js"></script>
     <script type="text/javascript" src="js/materialize.min.js"></script>
     <script type="text/javascript" src="js/sweetalert2.all.min.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript" src="js/localstorage.js"></script>
+    <script type="text/javascript" src="js/cronometro.js"></script>
     <script type="text/javascript" src="js/login.js"></script>
     <script type="text/javascript" src="js/cadastro.js"></script>
     <script type="text/javascript" src="js/myhome.js"></script>
     <script type="text/javascript" src="js/questao.js"></script>
     <script type="text/javascript" src="js/final.js"></script>
+    <script type="text/javascript" src="js/cadastroQuestao.js"></script>
+    <script type="text/javascript" src="js/jquery.mask.js"></script>
+    <script type="text/javascript" src="js/masks-mask.js"></script>
     <script type="text/javascript">
         app.initialize();
 
@@ -228,9 +310,16 @@
         estaLogado()
 
         function changeSection(sectionFechar, sectionAbrir) {
-            $( "#" + sectionFechar ).addClass("hide");
-            $( "#" + sectionAbrir ).removeClass("hide");
-        } 
+            $("#" + sectionFechar).addClass("hide");
+            $("#" + sectionAbrir).removeClass("hide");
+        }
+
+        $(document).ready(function(){
+            $('select').formSelect();
+            $('input#input_text, textarea#questionDescription').characterCounter();
+        });
+
+        M.textareaAutoResize($('#questionDescription'));
 
     </script>
 </body>

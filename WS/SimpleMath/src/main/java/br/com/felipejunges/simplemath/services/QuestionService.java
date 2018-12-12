@@ -1,7 +1,9 @@
 package br.com.felipejunges.simplemath.services;
 
+import br.com.felipejunges.simplemath.domain.Alternative;
 import br.com.felipejunges.simplemath.domain.Question;
 import br.com.felipejunges.simplemath.dto.QuestionDTO;
+import br.com.felipejunges.simplemath.dto.QuestionNewDTO;
 import br.com.felipejunges.simplemath.repositories.QuestionRepository;
 import br.com.felipejunges.simplemath.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,10 +45,9 @@ public class QuestionService {
 		return questoes;
 	}
 
-	public Question insert(QuestionNewDTO dto) {
-		Question q = fromDTO(dto);
-		questionRepository.save(q1);
-		alternativeService.saveAll(q.getAlternatives());
+	public Question insertWithAlternatives(Question q) {
+		repo.save(q);
+		alternativeService.insertAll(q.getAlternatives());
 		return q;
 	}
 	
@@ -61,18 +62,23 @@ public class QuestionService {
         return repo.save(obj);
     }
 
+	@Transactional
+	public Question update(Question obj) {
+		return repo.save(obj);
+	}
+
     public Question fromDTO(QuestionDTO dto) {
 	    return new Question(dto.getId(), dto.getDescription(), dto.getMaxtime(),
                 alternativeService.getAlternativesFromDTO(dto.getAlternativeDTOs()));
     }
 
 	public Question fromDTO(QuestionNewDTO dto) {
-		Question q = new Question(dto.getDescription(), false, dto.getMaxtime());
-		q.getAlternatives().add(dto.getA(), dto.getCorrect() == 1, false, q);
-		q.getAlternatives().add(dto.getB(), dto.getCorrect() == 2, false, q);
-		q.getAlternatives().add(dto.getC(), dto.getCorrect() == 3, false, q);
-		q.getAlternatives().add(dto.getD(), dto.getCorrect() == 4, false, q);
-		q.getAlternatives().add(dto.getE(), dto.getCorrect() == 5, false, q);
+		Question q = new Question(dto.getQuestion(), false, dto.getMaxtime());
+		q.getAlternatives().add(new Alternative(dto.getA(), dto.getCorrect() == 1, false, q));
+		q.getAlternatives().add(new Alternative(dto.getB(), dto.getCorrect() == 2, false, q));
+		q.getAlternatives().add(new Alternative(dto.getC(), dto.getCorrect() == 3, false, q));
+		q.getAlternatives().add(new Alternative(dto.getD(), dto.getCorrect() == 4, false, q));
+		q.getAlternatives().add(new Alternative(dto.getE(), dto.getCorrect() == 5, false, q));
 		return q;
     }
 

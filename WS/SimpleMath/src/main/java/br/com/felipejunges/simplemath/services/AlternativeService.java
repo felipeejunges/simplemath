@@ -62,4 +62,8 @@ public class AlternativeService {
 	public List<Alternative> findByQuestion(Question questao) {
 		return repo.findByQuestion(questao);
 	}
+
+    public List<Alternative> insertAll(List<Alternative> alternatives) {
+		return repo.saveAll(alternatives);
+    }
 }

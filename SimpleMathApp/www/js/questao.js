@@ -1,6 +1,6 @@
 
-var totalTempo = Stopwatch("totalQuiz_Resumo");
-var mediaTempo = Stopwatch("mediaTempo_Resumo");
+var totalTempo = new Stopwatch("tempoTotal_Questao");
+var mediaTempo = new Stopwatch("tempoAtual_Questao");
  
 function novoDesafio() {
     quiz = null;

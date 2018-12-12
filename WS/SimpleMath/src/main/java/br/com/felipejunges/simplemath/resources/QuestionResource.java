@@ -42,11 +42,9 @@ public class QuestionResource {
     @RequestMapping(method=RequestMethod.POST)
     public ResponseEntity<Void> insert(@RequestBody QuestionNewDTO objDto) {
 	    Question obj = service.fromDTO(objDto);
-	    obj = service.insert(obj);
+	    obj = service.insertWithAlternatives(obj);
 	    URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}").buildAndExpand(obj.getId()).toUri();
-	    System.out.println(obj.getId());
-	    System.out.println("Procurando" + service.find(obj.getId()).getId());
 	    return ResponseEntity.created(uri).build();
     }
 

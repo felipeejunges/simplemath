@@ -40,6 +40,16 @@ textarea.materialize-textarea:focus:not([readonly]) {
 
 .dropdown-content li > a, .dropdown-content li > span {
     color: #FFFFFF;
+    background: #1976d2;
+    /* 
+    background: #1976d2;
+    background: #1565C0;
+    background: #0d47a1;
+    */
+}
+
+.select-dropdown, .dropdown-trigger{
+    color: #FFFFFF;
 }
 
 .notification-badge {
