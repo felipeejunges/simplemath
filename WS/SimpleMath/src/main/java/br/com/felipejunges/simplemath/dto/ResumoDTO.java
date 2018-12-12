@@ -28,9 +28,9 @@ public class ResumoDTO implements Serializable {
         this.tempo = 0;
         this.erros = 0;
         this.acertos = 0;
+        this.data = quiz.getData();
         for (Answer answer: quiz.getAnswers()) {
             tempo += answer.getTime();
-            this.data = quiz.getData();
             if(answer.getAlternative().isCorrect()) acertos += 1;
             else erros += 1;
         }

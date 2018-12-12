@@ -33,14 +33,6 @@ public class Quiz implements Serializable {
     @JoinColumn(name="user_id")
     private Usuario user;
 
-    public Timestamp getData() {
-        return data;
-    }
-
-    public void setData(Timestamp data) {
-        this.data = data;
-    }
-
     private Timestamp data;
 
     public Quiz() {
@@ -95,4 +87,13 @@ public class Quiz implements Serializable {
     public void setUser(Usuario user) {
         this.user = user;
     }
+
+    public Timestamp getData() {
+        return data;
+    }
+
+    public void setData(Timestamp data) {
+        this.data = data;
+    }
+
 }
