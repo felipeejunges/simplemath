@@ -32,16 +32,16 @@ function carregarItens_Final() {
                 }
                 else { erros += 1 }
                 var item = '<strong class="title col s9 left-align ' + resultColor + '">Resposta ' + result + ' da questão ' + j + '</strong>';
-                item += '<span class="right-align">' + resultado.time + '</span>';
+                item += '<span class="right-align">' + msToTime(resultado.time) + '</span>';
                 var li = '<li class="collection-item">' + item + '</li>';
                 $('#collectionResultado').append(li);
                 j++;
             });
             $("#qntAcertos_Final").text(acertos);
             $("#qntErros_Final").text(erros);
-            $("#tempoMedio_Final").text(tempototal);
-            $("#tempoTotal_Final").text(tempomedio);
-            $("#tempoEsperado_Final").text(tempoesperado);
+            $("#tempoMedio_Final").text(msToTime(tempototal));
+            $("#tempoTotal_Final").text(msToTime(tempomedio));
+            $("#tempoEsperado_Final").text(msToTime(tempoesperado));
         }
     });
 }
