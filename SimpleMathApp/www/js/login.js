@@ -13,12 +13,16 @@ function login() {
         datatype: 'JSON',
         contentType: "application/json; charset=utf-8",
         cache: false,
+        beforeSend: function() {
+            preloadspinner.start();
+        },
         error: function () {
             swal({
                 type: 'error',
                 title: 'Oops...',
                 text: 'Aconteceu um erro desconhecido durante sua requisição'
             });
+            preloadspinner.end();
         },
         success: function (retorno) {
             $('#emailLogin').val("");
@@ -26,6 +30,7 @@ function login() {
             changeSection("login", "myhome");
             loginLocalStorage(retorno);
             carregarItens_MyHome();
+            preloadspinner.end();
         }
     });
 }
