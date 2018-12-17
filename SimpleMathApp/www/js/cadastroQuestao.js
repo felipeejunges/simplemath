@@ -1,6 +1,6 @@
 function cadastroQuestao() {
     var url = baseUrl + "/questions/"
-    var usuario = {
+    var questao = {
         question: $('#questionDescription').val(),
         a: $('#alternativeA').val(),
         b: $('#alternativeB').val(),
@@ -10,11 +10,14 @@ function cadastroQuestao() {
         maxtime: $('#maxtimeCadastro').val(),
         correct: $('#selectCorrect').val()
     };
+}
+
+function cadastroQuestaoAjax(url, questao) {
     $.ajax({
         type: "POST",
         url: url,
         timeout: 3000,
-        data: JSON.stringify(usuario),
+        data: JSON.stringify(questao),
         datatype: 'JSON',
         contentType: "application/json; charset=utf-8",
         cache: false,
