@@ -12,7 +12,8 @@
     <meta name="format-detection" content="telephone=no" />
     <meta name="msapplication-tap-highlight" content="no" />
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
-    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' gap:; style-src 'self' 'unsafe-inline'; media-src *" />
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' gap:; style-src 'self' 'unsafe-inline'; media-src *"
+    />
 
     <title>SimpleMath</title>
 </head>
@@ -22,11 +23,32 @@
         <nav class="blue darken-4">
             <div class="nav-wrapper">
                 <a href="#" class="brand-logo">SimpleMath</a>
+                <ul class="left">
+                        <li><a class="modal-trigger" href="#modalConfigServer"><i class="material-icons right">perm_data_setting</i></a></li>
+                    </ul>
                 <ul class="right">
                     <li><a href="javascript:logoutLocalStorage()" id="btnLogout"><i class="material-icons right">logout</i></a></li>
                 </ul>
             </div>
         </nav>
+
+        <div id="modalConfigServer" class="modal blue darken-4">
+            <div class="modal-content">
+                <h4 class="white-text">Server Config</h4>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="networkAddress" type="text" class="validate">
+                        <label for="networkAddress">Endereço</label>
+                    </div>
+                </div>
+                <p class="white-text">Favor colocar o dominio ou endereço de ip completo com protocolo e portas que serão necessárias.</p>
+            </div>
+            <div class="modal-footer">
+                <a href="javascript:limparConfigServer()" class="modal-close waves-effect waves-green btn-flat blue-text text-darken-3">Cancelar</a>
+                <a href="javascript:salvarConfigServer()" class="modal-close waves-effect waves-green btn-flat blue-text text-darken-3">Salvar</a>
+            </div>
+        </div>
+
         <div class="preloader-wrapper big loader" id="preloader">
             <div class="spinner-layer spinner-blue">
                 <div class="circle-clipper left">
@@ -99,8 +121,8 @@
                 </div>
                 <div class="row left-align">
                     <div class="col s6 left-align">
-                        <a href="javascript:changeSection('login', 'cadastroQuestao')" class="white-text">Nova
-                            Questão</a>
+                        <a href="javascript:changeSection('login', 'cadastroQuestao')" class="white-text">Nova Questão
+                        </a>
                     </div>
                     <div class="col s6 right-align">
                         <a href="javascript:changeSection('login', 'cadastro')" class="white-text">Cadastrar-se</a>
@@ -319,6 +341,7 @@
     <script type="text/javascript" src="js/sweetalert2.all.min.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/configServer.js"></script>
     <script type="text/javascript" src="js/localstorage.js"></script>
     <script type="text/javascript" src="js/preloader.js"></script>
     <script type="text/javascript" src="js/cronometro.js"></script>
@@ -333,7 +356,6 @@
     <script type="text/javascript">
         app.initialize();
 
-        var baseUrl = 'http://localhost:8080';
         var answers = [];
         var quiz;
         estaLogado()
@@ -343,8 +365,16 @@
             $("#" + sectionAbrir).removeClass("hide");
         }
 
+        $('.ip_address').mask('0ZZ.0ZZ.0ZZ.0ZZ', {
+            translation: {
+                'Z': {
+                    pattern: /[0-9]/, optional: true
+                }
+            }
+        });
         $(document).ready(function () {
             $('select').formSelect();
+            $('.modal').modal();
             $('input#input_text, textarea#questionDescription').characterCounter();
         });
 
