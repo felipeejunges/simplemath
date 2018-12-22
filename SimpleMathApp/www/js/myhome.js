@@ -17,6 +17,7 @@ function carregarItens_MyHome() {
         success: function (retorno) {
             var listaResumo = retorno
             var tempo = 0;
+            $('#collectionResumo').empty()
             $.each(listaResumo, function (i, resumo) {
                 tempo += resumo.tempo;
                 var item = '<span class="title">' + new Date(resumo.data) + '</span>';

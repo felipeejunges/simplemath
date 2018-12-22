@@ -22,6 +22,7 @@ function carregarItens_Final() {
             var tempoesperado =  retorno.tempoEsperado;
             var listaResultado = retorno.answer;
             var j = 0;
+            $('#collectionResultado').empty()
             $.each(listaResultado, function (i, resultado) {
                 var resultColor = ' red-text';
                 var result ='Incorreta';
