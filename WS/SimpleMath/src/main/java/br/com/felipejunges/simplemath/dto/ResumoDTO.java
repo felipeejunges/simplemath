@@ -59,4 +59,12 @@ public class ResumoDTO implements Serializable {
     public void setAcertos(int acertos) {
         this.acertos = acertos;
     }
+
+    public Timestamp getData() {
+        return data;
+    }
+
+    public void setData(Timestamp data) {
+        this.data = data;
+    }
 }
