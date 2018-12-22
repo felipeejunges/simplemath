@@ -19,7 +19,7 @@ function carregarItens_MyHome() {
             var tempo = 0;
             $.each(listaResumo, function (i, resumo) {
                 tempo += resumo.tempo;
-                var item = '<span class="title">' + resumo.data + '</span>';
+                var item = '<span class="title">' + new Date(resumo.data) + '</span>';
                 item += '<p><span class="col s6 left-align">Tempo: ' + msToTime(resumo.tempo) + '</span>';
                 item += '<i class="right-align"><strong>Acertos: </strong><span class="green-text">' + resumo.acertos + '</span> / ';
                 item += '<strong>Erros: </strong><span class="red-text">' + resumo.erros + '</span>' + '</i></p>';
