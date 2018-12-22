@@ -19,15 +19,15 @@ function carregarItens_MyHome() {
             var tempo = 0;
             $.each(listaResumo, function (i, resumo) {
                 tempo += resumo.tempo;
-                var item = '<span class="title">' + resumo.data + '</span>';
-                item += '<p><span class="col s6 left-align">Tempo: ' + resumo.tempo + '</span>';
+                var item = '<span class="title">' + new Date(resumo.data) + '</span>';
+                item += '<p><span class="col s6 left-align">Tempo: ' + msToTime(resumo.tempo) + '</span>';
                 item += '<i class="right-align"><strong>Acertos: </strong><span class="green-text">' + resumo.acertos + '</span> / ';
                 item += '<strong>Erros: </strong><span class="red-text">' + resumo.erros + '</span>' + '</i></p>';
                 var li = '<li class="collection-item">' + item + '</li>';
                 $('#collectionResumo').append(li);
             });
             $("#totalQuiz_Resumo").text(listaResumo.length);
-            $("#mediaTempo_Resumo").text(tempo / listaResumo.length);
+            $("#mediaTempo_Resumo").text(msToTime(tempo / listaResumo.length));
         }
     });
 }

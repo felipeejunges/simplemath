@@ -51,6 +51,7 @@ function forEachAlternative(item, index) {
 }
 
 function answerQuestion(i) {
+    preloadspinner.start();
     qntRespondidos = $("#respondidos").text();
     var questionObj = quiz.questions[qntRespondidos];
     var alternative = questionObj.alternatives[i];
@@ -72,6 +73,7 @@ function answerQuestion(i) {
         mediaTempo.stop();
         getQuestion(qntRespondidos);
     }
+    preloadspinner.end();
 }
 
 function salvarResposta() {

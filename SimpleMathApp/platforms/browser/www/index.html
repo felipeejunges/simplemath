@@ -12,7 +12,8 @@
     <meta name="format-detection" content="telephone=no" />
     <meta name="msapplication-tap-highlight" content="no" />
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
-    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' gap:; style-src 'self' 'unsafe-inline'; media-src *" />
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' gap:; style-src 'self' 'unsafe-inline'; media-src *"
+    />
 
     <title>SimpleMath</title>
 </head>
@@ -22,11 +23,82 @@
         <nav class="blue darken-4">
             <div class="nav-wrapper">
                 <a href="#" class="brand-logo">SimpleMath</a>
+                <ul class="left">
+                        <li><a class="modal-trigger" href="#modalConfigServer"><i class="material-icons right">perm_data_setting</i></a></li>
+                    </ul>
                 <ul class="right">
                     <li><a href="javascript:logoutLocalStorage()" id="btnLogout"><i class="material-icons right">logout</i></a></li>
                 </ul>
             </div>
         </nav>
+
+        <div id="modalConfigServer" class="modal blue darken-4">
+            <div class="modal-content">
+                <h4 class="white-text">Server Config</h4>
+                <p class="white-text"><strong>Endereço atual: </strong><span id="enderecoAtual"></span></p>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="networkAddress" type="text" class="validate">
+                        <label for="networkAddress">Endereço</label>
+                    </div>
+                </div>
+                <p class="white-text">Favor colocar o dominio ou endereço de ip completo com protocolo e portas que serão necessárias.</p>
+            </div>
+            <div class="modal-footer">
+                <a href="javascript:limparConfigServer()" class="modal-close waves-effect waves-green btn-flat blue-text text-darken-3">Cancelar</a>
+                <a href="javascript:salvarConfigServer()" class="modal-close waves-effect waves-green btn-flat blue-text text-darken-3">Salvar</a>
+            </div>
+        </div>
+
+        <div class="preloader-wrapper big loader" id="preloader">
+            <div class="spinner-layer spinner-blue">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+
+            <div class="spinner-layer spinner-red">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+
+            <div class="spinner-layer spinner-yellow">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+
+            <div class="spinner-layer spinner-green">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
         <section id="login">
             <div class="container">
 
@@ -50,10 +122,11 @@
                 </div>
                 <div class="row left-align">
                     <div class="col s6 left-align">
-                            <a href="javascript:changeSection('login', 'cadastroQuestao')" class="white-text">Nova Questão</a>
+                        <a href="javascript:changeSection('login', 'cadastroQuestao')" class="white-text">Nova Questão
+                        </a>
                     </div>
                     <div class="col s6 right-align">
-                            <a href="javascript:changeSection('login', 'cadastro')" class="white-text">Cadastrar-se</a>
+                        <a href="javascript:changeSection('login', 'cadastro')" class="white-text">Cadastrar-se</a>
                     </div>
                 </div>
             </div>
@@ -141,29 +214,7 @@
                 </div>
             </div>
             <div class="row white-text">
-                <p style="height: 30rem;overflow: scroll;" id="pQuestao">Lorem ipsum
-                    dolor sit amet, consectetur adipiscing elit. Integer condimentum ipsum nec rhoncus vulputate.
-                    Morbi sodales, purus nec consectetur congue, diam dolor vulputate justo, a posuere turpis velit
-                    in enim. Nullam vulputate placerat consequat. Vivamus interdum sapien diam. Donec viverra augue
-                    sed ultrices rutrum. Donec semper tellus lobortis, laoreet odio eget, hendrerit ipsum. Aenean
-                    feugiat mollis aliquet. In quis tempor nisi, vel aliquet erat.
-
-                    Phasellus facilisis, libero eget sollicitudin pellentesque, libero tortor ultrices libero, a
-                    tincidunt velit orci at leo. Ut interdum libero eu imperdiet fringilla. Aenean non ipsum ipsum.
-                    Aliquam erat volutpat. Mauris ac ipsum eget mauris iaculis cursus. Suspendisse sodales, nulla a
-                    aliquam aliquam, massa enim gravida enim, at placerat eros mauris sed diam. Cras ipsum leo,
-                    tincidunt et tempus quis, malesuada id libero. Nullam vel egestas leo.
-
-                    Nam nec iaculis purus. Vestibulum nisl tortor, mollis condimentum rutrum sed, elementum sed
-                    dolor. Maecenas a purus sed eros malesuada malesuada. Aenean ut condimentum libero. Mauris
-                    cursus tincidunt orci, eget malesuada dui. Duis scelerisque turpis quis felis maximus aliquet.
-                    Nulla ultricies nulla id consequat tempor. Vestibulum id mollis sapien, vel condimentum enim.
-                    Sed euismod maximus justo sit amet malesuada. Pellentesque vitae enim pretium, laoreet arcu
-                    eget, luctus urna.
-                    <br>a) 1
-                    <br>b) 2
-                    <br>c) 3
-                    <br>d) 4
+                <p style="height: 30rem;overflow: scroll;" id="pQuestao">
                 </p>
             </div>
             <div class="row center-align">
@@ -248,7 +299,7 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                            <i class="prefix white-text">D)</i>
+                        <i class="prefix white-text">D)</i>
                         <input id="alternativeD" type="text" class="validate">
                         <label for="alternativeD">Resposta Aqui</label>
                     </div>
@@ -291,7 +342,9 @@
     <script type="text/javascript" src="js/sweetalert2.all.min.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/configServer.js"></script>
     <script type="text/javascript" src="js/localstorage.js"></script>
+    <script type="text/javascript" src="js/preloader.js"></script>
     <script type="text/javascript" src="js/cronometro.js"></script>
     <script type="text/javascript" src="js/login.js"></script>
     <script type="text/javascript" src="js/cadastro.js"></script>
@@ -304,18 +357,25 @@
     <script type="text/javascript">
         app.initialize();
 
-        var baseUrl = 'http://localhost:8080';
         var answers = [];
         var quiz;
         estaLogado()
-
+        var preloadspinner = new PreloaderMaterialize("preloader");
         function changeSection(sectionFechar, sectionAbrir) {
             $("#" + sectionFechar).addClass("hide");
             $("#" + sectionAbrir).removeClass("hide");
         }
 
-        $(document).ready(function(){
+        $('.ip_address').mask('0ZZ.0ZZ.0ZZ.0ZZ', {
+            translation: {
+                'Z': {
+                    pattern: /[0-9]/, optional: true
+                }
+            }
+        });
+        $(document).ready(function () {
             $('select').formSelect();
+            $('.modal').modal();
             $('input#input_text, textarea#questionDescription').characterCounter();
         });
 
